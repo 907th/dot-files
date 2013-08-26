@@ -15,6 +15,7 @@ sudo apt-get install libxslt1-dev libxml2-dev libmagic-dev libmagickwand-dev
 sudo apt-get install apache2
 sudo apt-get install mysql-server libapache2-mod-auth-mysql
 sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt php5-mysql
+TODO
 ```
 
 ## PostgreSQL + phpPgAdmin
@@ -61,7 +62,7 @@ sudo apt-get install pidgin
 
 ## Git
 ```
-sudo apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev asciidoc
+sudo apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev asciidoc gitg
 wget https://github.com/git/git/archive/master.zip
 unzip master.zip
 cd git-master
@@ -86,6 +87,7 @@ ln -s /home/laise/Work/personal/dot-files/.gitconfig ~/.gitconfig
 ln -s /home/laise/Work/personal/dot-files/.vimrc ~/.vimrc
 ln -s /home/laise/Work/personal/dot-files/.tmux.conf ~/.tmux.conf
 ln -s /home/laise/Work/personal/dot-files/.gemrc ~/.gemrc
+ln -s /home/laise/Work/personal/dot-files/.ackrc ~/.ackrc
 ln -s /home/laise/Work/personal/dot-files/.vim/colors ~/.vim/colors
 printf "\n# Source .bashrc from dot-files\n. /home/laise/Work/personal/dot-files/.bashrc" >> ~/.bashrc
 

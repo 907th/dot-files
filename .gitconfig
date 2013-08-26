@@ -3,3 +3,5 @@
 	name = Alexey Chernenkov
 [push]
 	default = simple
+[alias]
+  subtree = subtree
