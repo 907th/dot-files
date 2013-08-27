@@ -18,4 +18,4 @@ alias la='\ls -l -a --color'
 
 # ENV
 export PAGER=less
-export EDITOR=vim
+export EDITOR=gvim
