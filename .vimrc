@@ -42,6 +42,7 @@ let g:jellybeans_overrides = {
 \ 'rubyRegexp': { 'guifg': 'fd20b3', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' },
 \ 'rubyRegexpSpecial': { 'guifg': 'f470f3', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' }
 \}
+hi ColorColumn guibg='#121212'
 
 "
 " Main setup
@@ -90,6 +91,7 @@ set nowritebackup
 set noswapfile
 set listchars=tab:>.,trail:.
 set list
+set colorcolumn=80
 
 "
 " Key mappings
