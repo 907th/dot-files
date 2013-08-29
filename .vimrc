@@ -100,6 +100,7 @@ set listchars=tab:>.,trail:.
 set list
 set colorcolumn=80
 set splitright
+set splitbelow
 
 "
 " Key mappings
