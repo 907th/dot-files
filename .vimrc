@@ -34,18 +34,7 @@ Bundle '907th/vim-conque'
 Bundle '907th/vim-auto-save'
 
 "
-" Coloring
-
-let g:jellybeans_overrides = {
-\ 'Folded': { 'guifg': 'a0a8b0', 'guibg': '171717', 'ctermfg': 'Black', 'ctermbg': '', 'attr': 'italic' },
-\ 'rubyRegexpDelimiter': { 'guifg': 'dd0093', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' },
-\ 'rubyRegexp': { 'guifg': 'fd20b3', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' },
-\ 'rubyRegexpSpecial': { 'guifg': 'f470f3', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' }
-\}
-hi ColorColumn guibg='#121212'
-
-"
-" Main setup
+" Appearance
 
 syntax on
 
@@ -60,8 +49,26 @@ else
   colorscheme jellybeans-csapprox
 end
 
+let g:jellybeans_overrides = {
+\ 'Folded': { 'guifg': 'a0a8b0', 'guibg': '171717', 'ctermfg': 'Black', 'ctermbg': '', 'attr': 'italic' },
+\ 'rubyRegexpDelimiter': { 'guifg': 'dd0093', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' },
+\ 'rubyRegexp': { 'guifg': 'fd20b3', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' },
+\ 'rubyRegexpSpecial': { 'guifg': 'f470f3', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' }
+\}
+hi ColorColumn guibg='#121212' ctermbg=Black
+
+"
+" Filetypes
+
 filetype on
 filetype plugin on
+
+augroup filetypedetect
+  au BufNewFile,BufRead *.jst.eco set filetype=html.eco
+augroup end
+
+"
+" Main setup
 
 set autoindent
 set autoread
@@ -92,6 +99,7 @@ set noswapfile
 set listchars=tab:>.,trail:.
 set list
 set colorcolumn=80
+set splitright
 
 "
 " Key mappings
@@ -167,13 +175,6 @@ command! Html2haml :call Html2haml()
 set expandtab
 set tabstop=2
 set shiftwidth=2
-
-"
-" Filetypes
-
-augroup filetypedetect
-  au BufNewFile,BufRead *.jst.eco set filetype=html.eco
-augroup end
 
 "
 " Plugins Setup
