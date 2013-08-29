@@ -38,6 +38,29 @@ Bundle '907th/vim-auto-save'
 
 syntax on
 
+let g:jellybeans_overrides = {
+\  'Folded': {
+\    'guifg': 'a0a8b0', 'guibg': '171717',
+\    'ctermfg': 'Black', 'ctermbg': '',
+\    'attr': 'italic'
+\  },
+\  'rubyRegexpDelimiter': {
+\    'guifg': 'fd20b3', 'guibg': '',
+\    'ctermfg': 'Magenta', 'ctermbg': '',
+\    'attr': ''
+\  },
+\  'rubyRegexp': {
+\    'guifg': 'ff40d3', 'guibg': '',
+\    'ctermfg': 'Magenta', 'ctermbg': '',
+\    'attr': ''
+\  },
+\  'rubyRegexpSpecial': {
+\    'guifg': 'ff90ff', 'guibg': '',
+\    'ctermfg': 'Magenta', 'ctermbg': '',
+\    'attr': ''
+\  }
+\}
+
 if has('gui_running')
   set guioptions-=m
   set guioptions-=T
@@ -49,13 +72,7 @@ else
   colorscheme jellybeans-csapprox
 end
 
-let g:jellybeans_overrides = {
-\ 'Folded': { 'guifg': 'a0a8b0', 'guibg': '171717', 'ctermfg': 'Black', 'ctermbg': '', 'attr': 'italic' },
-\ 'rubyRegexpDelimiter': { 'guifg': 'dd0093', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' },
-\ 'rubyRegexp': { 'guifg': 'fd20b3', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' },
-\ 'rubyRegexpSpecial': { 'guifg': 'f470f3', 'guibg': '', 'ctermfg': 'Magenta', 'ctermbg': '', 'attr': '' }
-\}
-hi ColorColumn guibg='#121212' ctermbg=Black
+hi ColorColumn guibg=#121212 ctermbg=Black
 
 "
 " Filetypes
