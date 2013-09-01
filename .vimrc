@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'BufOnly.vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
@@ -134,6 +135,7 @@ map <M-PageDown> <C-PageDown>
 
 nmap <F2> :tabe<CR>
 nmap <F3> :tabc<CR>
+nmap <F5> :call Reset()<CR>
 nmap <F10> :qa<CR>
 
 nmap <M-.> 3<C-w>>
@@ -245,5 +247,12 @@ function! Html2haml()
   let temp_file = '/tmp/vim_html2.haml'
   execute 'w !' . html2haml . ' > ' . temp_file
   execute 'pedit ' . temp_file
+endfunction
+
+" close all buffers and open new empty tab
+function! Reset()
+  exec 'tabnew'
+  exec 'tabonly'
+  exec 'silent! BufOnly'
 endfunction
 
