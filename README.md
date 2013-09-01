@@ -24,7 +24,7 @@ TODO
 Вынести функцию для создания бекапа конфигов
 
 ```
-sudo apt-get install postgresql
+sudo apt-get install postgresql postgresql-contrib
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '1';"
 sudo apt-get install phppgadmin
 PHPPGADMIN_CONFIG=/etc/phppgadmin/config.inc.php
