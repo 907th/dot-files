@@ -19,7 +19,19 @@ TODO
 ```
 
 ## PostgreSQL + phpPgAdmin
-TODO
+
+*TODO:*
+Вынести функцию для создания бекапа конфигов
+
+```
+sudo apt-get install postgresql
+sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '1';"
+sudo apt-get install phppgadmin
+PHPPGADMIN_CONFIG=/etc/phppgadmin/config.inc.php
+PHPPGADMIN_CONFIG_BACKUP=$PHPPGADMIN_CONFIG".backup"
+sudo cp $PHPPGADMIN_CONFIG $PHPPGADMIN_CONFIG_BACKUP
+sudo sed "s|\(\$conf\['extra_login_security'\] = \)true|\1false|" $PHPPGADMIN_CONFIG_BACKUP >$PHPPGADMIN_CONFIG
+```
 
 ## MongoDB + RockMongo
 ```
