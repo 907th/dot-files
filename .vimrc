@@ -10,7 +10,6 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/nerdtree'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'BufOnly.vim'
 Bundle 'godlygeek/csapprox'
@@ -33,6 +32,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'rdolgushin/QFixToggle'
 Bundle '907th/vim-conque'
 Bundle '907th/vim-auto-save'
+Bundle '907th/nerdtree'
 
 "
 " Appearance
@@ -207,6 +207,7 @@ let NERDTreeHighlightCursorline = 0
 let NERDTreeMinimalUI = 1
 let NERDTreeBookmarksFile = $HOME . '/.vim/NERDTreeBookmarks'
 let NERDTreeShowBookmarks = 0
+let NERDTreeReuseWindows = 0
 
 let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy  = 'B'
