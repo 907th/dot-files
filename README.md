@@ -101,7 +101,7 @@ ln -s /home/laise/Work/personal/dot-files/.tmux.conf ~/.tmux.conf
 ln -s /home/laise/Work/personal/dot-files/.gemrc ~/.gemrc
 ln -s /home/laise/Work/personal/dot-files/.ackrc ~/.ackrc
 ln -s /home/laise/Work/personal/dot-files/.vim/colors ~/.vim/colors
-sudo ln -s /home/laise/Work/personal/dot-files/wtmux /usr/local/bin/wtmux
+sudo ln -s /home/laise/Work/personal/dot-files/rtmux /usr/local/bin/rtmux
 printf "\n# Source .bashrc from dot-files\n. /home/laise/Work/personal/dot-files/.bashrc" >> ~/.bashrc
 
 ## RVM
