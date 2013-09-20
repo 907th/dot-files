@@ -140,3 +140,8 @@ heroku login
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86" | tar xzf -
 ~/.dropbox-dist/dropboxd &
 ```
+
+## Java 7
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
