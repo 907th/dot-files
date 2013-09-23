@@ -7,7 +7,8 @@ sudo apt-get install build-essential ack-grep exuberant-ctags tmux mercurial sub
 
 ## Ruby + RoR Packages
 ```
-sudo apt-get install libxslt1-dev libxml2-dev libmagic-dev libmagickwand-dev
+sudo apt-get install libxslt1-dev libxml2-dev libmagic-dev libmagickwand-dev \
+libpq-dev
 ```
 
 ## Apache2 + MySQL + PHP5 + phpMyAdmin
