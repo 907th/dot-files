@@ -92,6 +92,7 @@ augroup end
 set autoindent
 set autoread
 set number
+set relativenumber
 set wrap
 set hidden
 set fileencoding=utf-8
@@ -178,6 +179,7 @@ nnoremap <silent> <M-/> :let @/ = ''<CR>
 
 map <M-]> <plug>NERDCommenterToggle
 map <silent> <M-[> :FixWhitespace<CR>
+map <silent> <M-n> :call ToggleLineNumbering()<CR>
 
 nnoremap <M-w> :call EasyMotion#WB(0,0)<CR>
 nnoremap <M-b> :call EasyMotion#WB(0,1)<CR>
@@ -233,7 +235,7 @@ let g:sparkupExecuteMapping = '<M-m>'
 let g:sparkupNextMapping = '<M-n>'
 
 
-" run ConqueTerm with command specified in prompt
+" Run ConqueTerm with command specified in prompt
 function! ConqueInteractive()
   call inputsave()
   let cmd = input('Enter command: ')
@@ -243,7 +245,7 @@ function! ConqueInteractive()
   endif
 endfunction
 
-" run html2haml on selected text
+" Run html2haml on selected text
 function! Html2haml()
   let html2haml = '~/.rvm/bin/vim_html2haml --erb'
   let temp_file = '/tmp/vim_html2.haml'
@@ -251,10 +253,18 @@ function! Html2haml()
   execute 'pedit ' . temp_file
 endfunction
 
-" close all buffers and open new empty tab
+" Close all buffers and open new empty tab
 function! Reset()
   exec 'tabnew'
   exec 'tabonly'
   exec 'silent! BufOnly'
 endfunction
 
+" Toggle absolute/relative line numbering
+function! ToggleLineNumbering()
+  if &relativenumber == 1
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunction
