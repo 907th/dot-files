@@ -14,8 +14,17 @@ alias ll='\ls -l --color'
 alias la='\ls -l -a --color'
 
 # RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export PATH="$PATH:$HOME/.rvm/bin"
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  . "$HOME/.rvm/scripts/rvm"
+fi
 
-# ENV
-export PAGER=less
-export EDITOR=gvim
+# Heroku Toolbelt
+export PATH="$PATH:/usr/local/heroku/bin"
+
+# Editor & Pager
+export PAGER='less'
+export EDITOR='gvim'
+
+# Color prompt
+export PS1="\[$(tput bold)\]\[$(tput setaf 7)\]\u\[$(tput setaf 3)\]@\[$(tput setaf 7)\]\H \[$(tput setaf 2)\]\w \[$(tput setaf 4)\]$ \[$(tput sgr0)\]"

@@ -108,7 +108,7 @@ set ignorecase
 set smartcase
 set foldenable
 set foldmethod=indent
-set foldlevelstart=1
+set foldlevelstart=99
 set showcmd
 set wildmenu
 set wildmode=list:longest,full
@@ -210,6 +210,8 @@ let NERDTreeMinimalUI = 1
 let NERDTreeBookmarksFile = $HOME . '/.vim/NERDTreeBookmarks'
 let NERDTreeShowBookmarks = 0
 let NERDTreeReuseWindows = 0
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeShowLineNumbers = 1
 
 let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy  = 'B'
