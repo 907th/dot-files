@@ -22,6 +22,12 @@ fi
 # Heroku Toolbelt
 export PATH="$PATH:/usr/local/heroku/bin"
 
+# Go vars
+export GOROOT="$HOME/.go"
+export GOARCH='386'
+export GOOS='linux'
+export PATH="$PATH:$GOROOT/bin"
+
 # Editor & Pager
 export PAGER='less'
 export EDITOR='gvim'

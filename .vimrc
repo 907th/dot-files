@@ -1,10 +1,17 @@
 set nocompatible
 
 "
+" Setup Go plugin
+
+filetype off
+filetype plugin indent off
+set rtp+=~/.go/misc/vim
+
+"
 " Setup vundle
 
 filetype off
-
+filetype plugin indent off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
