@@ -126,6 +126,7 @@ set noswapfile
 set listchars=tab:>.,trail:.
 set list
 set colorcolumn=80
+set cursorline
 set splitright
 set splitbelow
 
