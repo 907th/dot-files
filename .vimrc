@@ -1,17 +1,17 @@
 set nocompatible
 
-"
-" Setup Go plugin
-
 filetype off
-filetype plugin indent off
+filetype plugin off
+filetype indent off
+
+"
+" Setup Go plugins
+
 set rtp+=~/.go/misc/vim
 
 "
 " Setup vundle
 
-filetype off
-filetype plugin indent off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -84,14 +84,10 @@ end
 hi ColorColumn guibg=#121212 ctermbg=Black
 
 "
-" Filetypes
+" Enable filetype detection & plugins
 
 filetype on
 filetype plugin on
-
-augroup filetypedetect
-  au BufNewFile,BufRead *.jst.eco set filetype=html.eco
-augroup end
 
 "
 " Main setup
