@@ -139,6 +139,9 @@ nmap <M-Down> <C-w><Down>
 map <M-PageUp> <C-PageUp>
 map <M-PageDown> <C-PageDown>
 
+map <PageUp> <C-u>
+map <PageDown> <C-d>
+
 nmap <F2> :tabe<CR>
 nmap <F3> :tabc<CR>
 nmap <F5> :call Reset()<CR>
