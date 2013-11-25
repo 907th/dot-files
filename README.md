@@ -104,7 +104,7 @@ ln -s /home/laise/Work/personal/dot-files/.ackrc ~/.ackrc
 ln -s /home/laise/Work/personal/dot-files/.vim/colors ~/.vim/colors
 ln -s /home/laise/Work/personal/dot-files/.vim/snippets ~/.vim/snippets
 ln -s /home/laise/Work/personal/dot-files/.vim/ftplugin ~/.vim/ftplugin
-sudo ln -s /home/laise/Work/personal/dot-files/rtmux /usr/local/bin/rtmux
+sudo ln -s /home/laise/Work/personal/dot-files/tmux-rails /usr/local/bin/tmux-rails
 printf "\n# Source .bashrc from dot-files\n. /home/laise/Work/personal/dot-files/.bashrc" >> ~/.bashrc
 
 ## RVM
