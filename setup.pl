@@ -61,7 +61,7 @@ sub Run {
 
 sub Run_All {
   foreach (@opts) {
-    Run($_) if $_ ne 'Run_All';
+    Run($_);
   }
 }
 
