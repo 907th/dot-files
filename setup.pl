@@ -20,7 +20,9 @@ use Time::HiRes ('time');
   'Install_ElasticSearch',
   'Setup_Dot_Files',
   'Install_Vundle',
-  'Install_Html2Haml_Wrapper_For_Vim'
+  'Install_Html2Haml_Wrapper_For_Vim',
+  'Install_NodeJS',
+  'Install_Zeal_Documentation_Server'
 );
 
 %other_opts = (
@@ -194,7 +196,7 @@ sub Install_GVim {
 
 sub Install_Skype {
   Exe(<<'  CMD');
-    sudo add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+    sudo add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
     sudo apt-get -y update
     sudo apt-get -y install skype
   CMD
@@ -253,7 +255,7 @@ sub Install_Dropbox {
 
 sub Install_Java {
   Exe(<<'  CMD');
-    sudo add-apt-repository ppa:webupd8team/java
+    sudo add-apt-repository -y ppa:webupd8team/java
     sudo apt-get -y update
     sudo apt-get -y install oracle-java7-installer
   CMD
@@ -326,6 +328,24 @@ sub Install_Html2Haml_Wrapper_For_Vim {
     bash -c "$RVM use 1.9.3 && rvm gemset create html2haml"
     bash -c "$RVM use 1.9.3@html2haml && gem install html2haml"
     bash -c "$RVM wrapper 1.9.3@html2haml vim html2haml"
+  CMD
+}
+
+sub Install_NodeJS {
+  Exe(<<'  CMD');
+    sudo add-apt-repository -y ppa:chris-lea/node.js
+    sudo apt-get update
+    sudo apt-get install -y python-software-properties python g++ make
+    sudo apt-get install -y nodejs
+  CMD
+}
+
+sub Install_Zeal_Documentation_Server {
+  Exe(<<'  CMD');
+    sudo add-apt-repository -y ppa:canonical-qt5-edgers/qt5-proper
+    sudo add-apt-repository -y ppa:jerzy-kozera/zeal-ppa
+    sudo apt-get -y update
+    sudo apt-get -y install zeal
   CMD
 }
 
