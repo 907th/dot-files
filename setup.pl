@@ -22,7 +22,8 @@ use Time::HiRes ('time');
   'Install_Vundle',
   'Install_Html2Haml_Wrapper_For_Vim',
   'Install_NodeJS',
-  'Install_Zeal_Documentation_Server'
+  'Install_Zeal_Documentation_Server',
+  'Install_VirtualBox'
 );
 
 %other_opts = (
@@ -346,6 +347,14 @@ sub Install_Zeal_Documentation_Server {
     sudo add-apt-repository -y ppa:jerzy-kozera/zeal-ppa
     sudo apt-get -y update
     sudo apt-get -y install zeal
+  CMD
+}
+
+sub Install_VirtualBox {
+  Exe(<<'  CMD');
+    wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
+    sudo apt-get -y update
+    sudo apt-get -y install dkms virtualbox
   CMD
 }
 
