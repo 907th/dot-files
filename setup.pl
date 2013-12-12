@@ -23,7 +23,8 @@ use Time::HiRes ('time');
   'Install_Html2Haml_Wrapper_For_Vim',
   'Install_NodeJS',
   'Install_Zeal_Documentation_Server',
-  'Install_VirtualBox'
+  'Install_VirtualBox',
+  'Install_LaTeX'
 );
 
 %other_opts = (
@@ -355,6 +356,12 @@ sub Install_VirtualBox {
     wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
     sudo apt-get -y update
     sudo apt-get -y install dkms virtualbox
+  CMD
+}
+
+sub Install_LaTeX {
+  Exe(<<'  CMD');
+    sudo apt-get -y install texlive-full
   CMD
 }
 
