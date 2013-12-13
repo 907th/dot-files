@@ -23,7 +23,8 @@ use Time::HiRes ('time');
   'Install_Html2Haml_Wrapper_For_Vim',
   'Install_NodeJS',
   'Install_Zeal_Documentation_Server',
-  'Install_VirtualBox'
+  'Install_VirtualBox',
+  'Install_LaTeX'
 );
 
 %other_opts = (
@@ -79,8 +80,8 @@ sub Exe {
 
     # Always cd to setup dir
     WD=~/Setup
-    mkdir -p $WD
-    cd $WD
+    mkdir -p \$WD
+    cd \$WD
 
     ${_[0]}
   CMD
@@ -122,7 +123,7 @@ sub Install_Common_Packages {
   Exe(<<'  CMD');
     sudo apt-get -y install \
       build-essential ack-grep exuberant-ctags tmux \
-      mercurial subversion curl mc xclip sysstat iftop iptraf htop \
+      mercurial subversion curl mc xclip xsel sysstat iftop iptraf htop \
       libxslt1-dev libxml2-dev libmagic-dev libmagickwand-dev \
       libpq-dev libqt4-dev libmysqlclient-dev libcurl4-gnutls-dev \
       libexpat1-dev gettext libz-dev libssl-dev asciidoc
@@ -355,6 +356,12 @@ sub Install_VirtualBox {
     wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
     sudo apt-get -y update
     sudo apt-get -y install dkms virtualbox
+  CMD
+}
+
+sub Install_LaTeX {
+  Exe(<<'  CMD');
+    sudo apt-get -y install texlive-full
   CMD
 }
 
