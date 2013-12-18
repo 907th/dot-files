@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# This script setup tmux layout which I usually use
-# while working on Ruby on Rails projects:
+# This script loads tmux and configures windows layout
+# that I use while working on Ruby on Rails projects:
 #  * first window runs Rails server and watches log-file;
-#  * second window runs git-sh + Guard + Rails console.
+#  * second window runs git-sh and Guard.
 
 
 CURRENT_DIR=${PWD##*/}
@@ -59,23 +59,18 @@ then
   tmux send-keys "tail -f \"$LOG_FILE\"" C-m
 fi
 
-# Create 2nd window and run git-sh in it
-tmux new-window -t "$TMUX_SESSION:2" -n 'Shell' 'git-sh'
-tmux select-window -t "$TMUX_SESSION:2"
-
-# Start Rails console
-tmux split-window -v
-tmux select-pane -t 2
-tmux send-keys 'rails c' C-m
-
-# Start Guard
+# Create 2nd window and run git-sh and Guard in it
 if [ $GUARD_START ]
-then
-  tmux select-pane -t 1
-  tmux split-window -h
+  tmux new-window -t "$TMUX_SESSION:2" -n 'Guard' 'guard'
+
+  # Start git-sh
+  tmux split-window -v
   tmux select-pane -t 2
-  tmux send-keys 'guard' C-m
+  tmux send-keys 'git-sh' C-m
+then
+  tmux new-window -t "$TMUX_SESSION:2" -n 'Shell' 'gt-sh'
 fi
+tmux select-window -t "$TMUX_SESSION:2"
 
 # Attach to tmux session
 tmux select-window -t "$TMUX_SESSION:2"
