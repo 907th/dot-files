@@ -1,16 +1,39 @@
-# Common
-snippet #enc
-	# encoding: utf-8
-# RSpec
-snippet des
-	describe ${1:object} do
-		${2}
-	end
-snippet it
-	it ${1:acts} do
-		${2}
-	end
-snippet ctx
-	context ${1:description} do
-		${2}
-	end
+snippet     #!
+abbr        #!/usr/bin/env ruby
+  #!/usr/bin/env ruby
+
+snippet     #enc
+abbr        # encoding: utf-8
+  # encoding: utf-8
+
+snippet     des
+alias       desc descr description
+abbr        describe obj do ... end
+  describe ${1:object} do
+    ${2}
+  end
+
+snippet     it
+abbr        it acts do ... end
+  it ${1:acts} do
+    ${2}
+  end
+
+snippet     ctx
+alias       cont context
+  context ${1:description} do
+    ${2}
+  end
+
+snippet     do
+options     indent
+abbr        do ... end
+  do
+    ${1}
+  end
+
+snippet     dov
+abbr        do |v| ... end
+  do |${1:var}|
+    ${2:c}
+  end

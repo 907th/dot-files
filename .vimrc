@@ -26,8 +26,9 @@ Bundle 'mileszs/ack.vim'
 Bundle 'inkarkat/nerdcommenter'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'msanders/snipmate.vim'
 Bundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
+Bundle 'Shougo/neocomplete'
+Bundle 'Shougo/neosnippet'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
@@ -39,7 +40,6 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
 Bundle 'rdolgushin/QFixToggle'
-Bundle '907th/vim-conque'
 Bundle '907th/vim-auto-save'
 Bundle '907th/nerdtree'
 
@@ -146,7 +146,7 @@ map <PageDown> <C-d>
 
 nmap <F2> :tabe<CR>
 nmap <F3> :tabc<CR>
-nmap <F5> :call Reset()<CR>
+nmap <F5> :call <SID>Reset()<CR>
 nmap <F10> :qa<CR>
 
 nmap <M-.> 3<C-w>>
@@ -180,26 +180,66 @@ imap <Home> <C-o><Home>
 vnoremap <silent> <M-r> y:@"<CR>
 nnoremap <silent> <M-r> Vy:@"<CR>
 
-nnoremap <silent> <M-q> :BuffergatorOpen<CR>
-nnoremap <silent> <M-t> :TagbarToggle<CR>
-nnoremap <silent> <M-a> :NERDTreeToggle<CR>
-nnoremap <silent> <M-o> :NERDTreeFind<CR>
-nnoremap <silent> <M-/> :let @/ = ''<CR>
+nmap <silent> <M-q> :BuffergatorOpen<CR>
+nmap <silent> <M-t> :TagbarToggle<CR>
+nmap <silent> <M-a> :NERDTreeToggle<CR>
+nmap <silent> <M-o> :NERDTreeFind<CR>
+nmap <silent> <M-/> :let @/ = ''<CR>
 
-map <M-]> <plug>NERDCommenterToggle
-map <silent> <M-[> :FixWhitespace<CR>
-map <silent> <M-n> :call ToggleLineNumbering()<CR>
+map <M-\> <plug>NERDCommenterToggle
+map <silent> <M-]> :FixWhitespace<CR>
+map <silent> <M-n> :call <SID>toggleLineNumbering()<CR>
 
-nnoremap <M-w> :call EasyMotion#WB(0,0)<CR>
-nnoremap <M-b> :call EasyMotion#WB(0,1)<CR>
-nnoremap <M-e> :call EasyMotion#E(0,0)<CR>
-nnoremap <M-g> :call EasyMotion#E(0,1)<CR>
-nnoremap <M-f> :call EasyMotion#F(0,0)<CR>
-nnoremap <M-h> :call EasyMotion#F(0,1)<CR>
+nmap <M-w> :call EasyMotion#WB(0,0)<CR>
+nmap <M-b> :call EasyMotion#WB(0,1)<CR>
+nmap <M-e> :call EasyMotion#E(0,0)<CR>
+nmap <M-g> :call EasyMotion#E(0,1)<CR>
+nmap <M-f> :call EasyMotion#F(0,0)<CR>
+nmap <M-h> :call EasyMotion#F(0,1)<CR>
 
 command! Todo Ack! 'TODO|FIXME|NOTE'
-command! ConqueInteractive :call ConqueInteractive()
 command! Html2haml :call Html2haml()
+
+"
+" CR, BS, Esc, Tab behavior for neocomplete and neosnippet
+
+imap <expr> <CR> <SID>myCR()
+imap <expr> <BS> <SID>myBS()
+imap <expr> <Tab> <SID>myTab()
+imap <expr> <Esc> <SID>myEsc()
+
+function! s:myCR()
+  return pumvisible() ?
+\   neocomplete#close_popup() :
+\   "\<CR>"
+endfunction
+
+function! s:myBS()
+  return pumvisible() ?
+\   neocomplete#cancel_popup() :
+\   "\<BS>"
+endfunction
+
+function! s:myTab()
+  return neosnippet#expandable_or_jumpable() ?
+\   "\<Plug>(neosnippet_expand_or_jump)" :
+\   pumvisible() ?
+\     "\<C-n>" :
+\     <SID>check_back_space() ?
+\       "\<Tab>" :
+\       neocomplete#start_manual_complete()
+endfunction
+
+function! s:myEsc()
+  return pumvisible() ?
+\   neocomplete#cancel_popup() :
+\   "\<Esc>"
+endfunction
+
+function! s:check_back_space()
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
 "
 " Indents
@@ -245,16 +285,12 @@ let g:ctrlp_max_files = 0
 let g:sparkupExecuteMapping = '<M-m>'
 let g:sparkupNextMapping = '<M-n>'
 
+let g:neosnippet#snippets_directory='~/.vim/snippets'
+let g:neosnippet#disable_runtime_snippets = { '_' : 1 }
 
-" Run ConqueTerm with command specified in prompt
-function! ConqueInteractive()
-  call inputsave()
-  let cmd = input('Enter command: ')
-  call inputrestore()
-  if cmd != ''
-    exec 'ConqueTerm ' . cmd
-  endif
-endfunction
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#disable_auto_complete = 1
+let g:neocomplete#min_keyword_length = 2
 
 " Run html2haml on selected text
 function! Html2haml()
@@ -265,14 +301,14 @@ function! Html2haml()
 endfunction
 
 " Close all buffers and open new empty tab
-function! Reset()
+function! s:reset()
   exec 'tabnew'
   exec 'tabonly'
   exec 'silent! BufOnly'
 endfunction
 
 " Toggle absolute/relative line numbering
-function! ToggleLineNumbering()
+function! s:toggleLineNumbering()
   if &relativenumber == 1
     set norelativenumber
   else
