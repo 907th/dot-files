@@ -190,7 +190,7 @@ sub Install_GVim {
     sudo apt-get -y build-dep vim-gnome
     hg clone https://vim.googlecode.com/hg/ vim
     cd vim
-    ./configure --with-features=huge --enable-gui=gnome2
+    ./configure --with-features=huge --enable-gui=gnome2 --enable-luainterp=yes
     make
     sudo make install
   CMD
