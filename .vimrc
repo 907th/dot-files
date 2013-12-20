@@ -146,7 +146,7 @@ map <PageDown> <C-d>
 
 nmap <F2> :tabe<CR>
 nmap <F3> :tabc<CR>
-nmap <F5> :call <SID>Reset()<CR>
+nmap <F5> :call <SID>reset()<CR>
 nmap <F10> :qa<CR>
 
 nmap <M-.> 3<C-w>>
@@ -188,6 +188,7 @@ nmap <silent> <M-/> :let @/ = ''<CR>
 
 map <M-\> <plug>NERDCommenterToggle
 map <silent> <M-]> :FixWhitespace<CR>
+map <silent> <M-[> :FixWhitespace<CR>
 map <silent> <M-n> :call <SID>toggleLineNumbering()<CR>
 
 nmap <M-w> :call EasyMotion#WB(0,0)<CR>
@@ -225,18 +226,18 @@ function! s:myTab()
 \   "\<Plug>(neosnippet_expand_or_jump)" :
 \   pumvisible() ?
 \     "\<C-n>" :
-\     <SID>check_back_space() ?
+\     <SID>checkBackSpace() ?
 \       "\<Tab>" :
 \       neocomplete#start_manual_complete()
 endfunction
 
 function! s:myEsc()
   return pumvisible() ?
-\   neocomplete#cancel_popup() :
+\   neocomplete#close_popup() :
 \   "\<Esc>"
 endfunction
 
-function! s:check_back_space()
+function! s:checkBackSpace()
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
