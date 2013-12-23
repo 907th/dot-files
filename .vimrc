@@ -206,11 +206,13 @@ command! Todo Ack! 'TODO|FIXME|NOTE'
 command! Html2haml :call Html2haml()
 
 "
-" CR, BS, Esc, Tab behavior
+" Automatic completion + snippets key mappings
 
 imap <expr> <CR> <SID>myCR()
 imap <expr> <Tab> <SID>myTab()
 imap <expr> <Esc> <SID>myEsc()
+imap <expr> <Up> <SID>myUp()
+imap <expr> <Down> <SID>myDown()
 
 function! s:myCR()
   return pumvisible() ? "\<C-y>" : "\<CR>"
@@ -226,7 +228,15 @@ function! s:myTab()
 endfunction
 
 function! s:myEsc()
-  return pumvisible() ? "\<C-e>" : "\<Esc>"
+  return pumvisible() ? "\<C-y>" : "\<Esc>"
+endfunction
+
+function! s:myUp()
+  return pumvisible() ? "\<C-p>" : "\<Up>"
+endfunction
+
+function! s:myDown()
+  return pumvisible() ? "\<C-n>" : "\<Down>"
 endfunction
 
 function! s:checkBackSpace()
