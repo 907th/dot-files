@@ -27,8 +27,9 @@ Bundle 'inkarkat/nerdcommenter'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
-Bundle 'Shougo/neocomplete'
-Bundle 'Shougo/neosnippet'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
@@ -116,8 +117,8 @@ set foldmethod=indent
 set foldlevelstart=99
 set showcmd
 set wildmenu
-set wildmode=list:longest,full
-set completeopt=menu
+set wildmode=list:full
+set completeopt=menuone,preview
 set nobackup
 set nowritebackup
 set noswapfile
@@ -146,7 +147,7 @@ map <PageDown> <C-d>
 
 nmap <F2> :tabe<CR>
 nmap <F3> :tabc<CR>
-nmap <F5> :call <SID>reset()<CR>
+nmap <F9> :call <SID>reset()<CR>
 nmap <F10> :qa<CR>
 
 nmap <M-.> 3<C-w>>
@@ -169,6 +170,9 @@ nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
 nnoremap S S<Space><BS>
 inoremap <CR> <CR><Space><BS>
+imap <M-Up> <Esc>O
+imap <M-Down> <Esc>o
+
 nnoremap zq zr
 nnoremap zQ zR
 nnoremap gn gi<Esc>l
@@ -202,44 +206,39 @@ command! Todo Ack! 'TODO|FIXME|NOTE'
 command! Html2haml :call Html2haml()
 
 "
-" CR, BS, Esc, Tab behavior for neocomplete and neosnippet
+" CR, BS, Esc, Tab behavior
 
 imap <expr> <CR> <SID>myCR()
-imap <expr> <BS> <SID>myBS()
 imap <expr> <Tab> <SID>myTab()
 imap <expr> <Esc> <SID>myEsc()
 
 function! s:myCR()
-  return pumvisible() ?
-\   neocomplete#close_popup() :
-\   "\<CR>"
-endfunction
-
-function! s:myBS()
-  return pumvisible() ?
-\   neocomplete#cancel_popup() :
-\   "\<BS>"
+  return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 
 function! s:myTab()
-  return neosnippet#expandable_or_jumpable() ?
-\   "\<Plug>(neosnippet_expand_or_jump)" :
-\   pumvisible() ?
-\     "\<C-n>" :
-\     <SID>checkBackSpace() ?
-\       "\<Tab>" :
-\       neocomplete#start_manual_complete()
+  let triggerSnippet = "\<C-r>=snipMate#TriggerSnippet()\<CR>"
+  return pumvisible() ? "\<C-n>" :
+\     <SID>snipMateCanBeExpanded() ? triggerSnippet :
+\       exists('b:snip_state') ? triggerSnippet :
+\         <SID>checkBackSpace() ?  "\<Tab>" :
+\         "\<C-n>"
 endfunction
 
 function! s:myEsc()
-  return pumvisible() ?
-\   neocomplete#close_popup() :
-\   "\<Esc>"
+  return pumvisible() ? "\<C-e>" : "\<Esc>"
 endfunction
 
 function! s:checkBackSpace()
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+function! s:snipMateCanBeExpanded()
+  let word     = snipMate#WordBelowCursor()
+  let snippets = map(snipMate#GetSnippetsForWordBelowCursor(word, '*', 0), 'v:val[0]')
+  let matches  = filter(snippets, "v:val =~# '\\V\\^" . escape(word, '\') . "\\$'")
+  return len(matches) > 0
 endfunction
 
 "
