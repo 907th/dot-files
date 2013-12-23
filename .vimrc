@@ -210,7 +210,6 @@ command! Html2haml :call Html2haml()
 
 imap <expr> <CR> <SID>myCR()
 imap <expr> <Tab> <SID>myTab()
-imap <expr> <Esc> <SID>myEsc()
 imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
 
@@ -220,15 +219,11 @@ endfunction
 
 function! s:myTab()
   let triggerSnippet = "\<C-r>=snipMate#TriggerSnippet()\<CR>"
-  return pumvisible() ? "\<C-n>" :
+  return pumvisible() ? "\<C-e>" :
 \     <SID>snipMateCanBeExpanded() ? triggerSnippet :
 \       exists('b:snip_state') ? triggerSnippet :
 \         <SID>checkBackSpace() ?  "\<Tab>" :
 \         "\<C-n>"
-endfunction
-
-function! s:myEsc()
-  return pumvisible() ? "\<C-y>" : "\<Esc>"
 endfunction
 
 function! s:myUp()
