@@ -40,9 +40,9 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
-Bundle 'rdolgushin/QFixToggle'
 Bundle '907th/vim-auto-save'
 Bundle '907th/nerdtree'
+Bundle '907th/vim-qfix'
 
 "
 " Appearance
@@ -117,7 +117,7 @@ set foldmethod=indent
 set foldlevelstart=99
 set showcmd
 set wildmenu
-set wildmode=list:full
+set wildmode=list:longest
 set completeopt=menuone,preview
 set nobackup
 set nowritebackup
@@ -145,10 +145,17 @@ map <M-PageDown> <C-PageDown>
 map <PageUp> <C-u>
 map <PageDown> <C-d>
 
+nmap <F1> :tabedit ~/.vimrc<CR>
 nmap <F2> :tabe<CR>
 nmap <F3> :tabc<CR>
 nmap <F9> :call <SID>reset()<CR>
 nmap <F10> :qa<CR>
+
+function! s:reset()
+  exec 'tabnew'
+  exec 'tabonly'
+  exec 'silent! BufOnly'
+endfunction
 
 nmap <M-.> 3<C-w>>
 nmap <M-,> 3<C-w><
@@ -158,20 +165,24 @@ nmap <M-j> <C-w>+
 nmap <M-v> <C-w>v
 nmap <M-s> <C-w>s
 nmap <M-c> <C-w>c
+nmap <M-x> :bd<CR>
+nmap <M-z> :w<CR>
+nmap <M-q> <C-^>
 
+map <M-a> "a
 map <M-y> "ay
 map <M-p> "ap
 map <M-d> "ad
-
-nmap <M-z> :w<CR>
-nmap <M-x> :bd<CR>
 
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
 nnoremap S S<Space><BS>
 inoremap <CR> <CR><Space><BS>
+
 imap <M-Up> <Esc>O
 imap <M-Down> <Esc>o
+imap <M-Left> <C-o>B
+imap <M-Right> <C-o>W
 
 nnoremap zq zr
 nnoremap zQ zR
@@ -184,16 +195,29 @@ imap <Home> <C-o><Home>
 vnoremap <silent> <M-r> y:@"<CR>
 nnoremap <silent> <M-r> Vy:@"<CR>
 
-nmap <silent> <M-q> :BuffergatorOpen<CR>
-nmap <silent> <M-t> :TagbarToggle<CR>
-nmap <silent> <M-a> :NERDTreeToggle<CR>
-nmap <silent> <M-o> :NERDTreeFind<CR>
-nmap <silent> <M-/> :let @/ = ''<CR>
+nmap <silent> <M-1> :NERDTreeToggle<CR>
+nmap <silent> <M-2> :BuffergatorOpen<CR>
+nmap <silent> <M-3> :TagbarToggle<CR>
+nmap <silent> <M-4> :QFix<CR>
+nmap <silent> <M-5> :NERDTreeFind<CR>
 
-map <M-\> <plug>NERDCommenterToggle
-map <silent> <M-]> :FixWhitespace<CR>
-map <silent> <M-[> :FixWhitespace<CR>
-map <silent> <M-n> :call <SID>toggleLineNumbering()<CR>
+nmap <silent> <M-n> :call <SID>toggleLineNumbering()<CR>
+nmap <silent> <M-/> :call <SID>disableSelection()<CR>
+nmap <silent> <M-\> <plug>NERDCommenterToggle
+nmap <silent> <M-]> :FixWhitespace<CR>
+nmap <silent> <M-[> :FixWhitespace<CR>
+
+function! s:disableSelection()
+  exec "let @/ = ''"
+endfunction
+
+function! s:toggleLineNumbering()
+  if &relativenumber == 1
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunction
 
 nmap <M-w> :call EasyMotion#WB(0,0)<CR>
 nmap <M-b> :call EasyMotion#WB(0,1)<CR>
@@ -202,8 +226,22 @@ nmap <M-g> :call EasyMotion#E(0,1)<CR>
 nmap <M-f> :call EasyMotion#F(0,0)<CR>
 nmap <M-h> :call EasyMotion#F(0,1)<CR>
 
+"
+" Show TODO's
+
 command! Todo Ack! 'TODO|FIXME|NOTE'
+
+"
+" Run html2haml on selected text
+
 command! Html2haml :call Html2haml()
+
+function! Html2haml()
+  let html2haml = '~/.rvm/bin/vim_html2haml --erb'
+  let temp_file = '/tmp/vim_html2.haml'
+  execute 'w !' . html2haml . ' > ' . temp_file
+  execute 'pedit ' . temp_file
+endfunction
 
 "
 " Automatic completion + snippets key mappings
@@ -219,11 +257,19 @@ endfunction
 
 function! s:myTab()
   let triggerSnippet = "\<C-r>=snipMate#TriggerSnippet()\<CR>"
-  return pumvisible() ? "\<C-e>" :
+  return pumvisible() ? "\<C-n>" :
 \     <SID>snipMateCanBeExpanded() ? triggerSnippet :
 \       exists('b:snip_state') ? triggerSnippet :
 \         <SID>checkBackSpace() ?  "\<Tab>" :
-\         "\<C-n>"
+\         <SID>autoCompleteFunction()
+endfunction
+
+function! s:autoCompleteFunction()
+  if &ft == 'css' || &ft == 'sass'
+    return "\<C-x>\<C-o>"
+  else
+    return "\<C-n>"
+  endif
 endfunction
 
 function! s:myUp()
@@ -254,7 +300,7 @@ set tabstop=2
 set shiftwidth=2
 
 "
-" Plugins Setup
+" NERDTree
 
 let NERDSpaceDelims = 1
 let NERDTreeWinPos = 'right'
@@ -266,6 +312,31 @@ let NERDTreeShowBookmarks = 0
 let NERDTreeReuseWindows = 0
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeShowLineNumbers = 1
+
+"
+" Close NERDTree if it is a last window
+
+autocmd bufenter * call <SID>checkNoMoreWindows()
+
+function! s:checkNoMoreWindows()
+  if winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary'
+    exec 'q'
+  endif
+endfunction
+
+"
+" Close help window with 'q'
+
+autocmd bufenter * call <SID>helpWindowMapping()
+
+function! s:helpWindowMapping()
+  if &buftype == 'help'
+    exec 'map <buffer> <silent> q :q<CR>'
+  endif
+endfunction
+
+"
+" Other plugins
 
 let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy  = 'B'
@@ -289,34 +360,3 @@ let g:ctrlp_max_files = 0
 
 let g:sparkupExecuteMapping = '<M-m>'
 let g:sparkupNextMapping = '<M-n>'
-
-let g:neosnippet#snippets_directory='~/.vim/snippets'
-let g:neosnippet#disable_runtime_snippets = { '_' : 1 }
-
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#min_keyword_length = 2
-
-" Run html2haml on selected text
-function! Html2haml()
-  let html2haml = '~/.rvm/bin/vim_html2haml --erb'
-  let temp_file = '/tmp/vim_html2.haml'
-  execute 'w !' . html2haml . ' > ' . temp_file
-  execute 'pedit ' . temp_file
-endfunction
-
-" Close all buffers and open new empty tab
-function! s:reset()
-  exec 'tabnew'
-  exec 'tabonly'
-  exec 'silent! BufOnly'
-endfunction
-
-" Toggle absolute/relative line numbering
-function! s:toggleLineNumbering()
-  if &relativenumber == 1
-    set norelativenumber
-  else
-    set relativenumber
-  endif
-endfunction
