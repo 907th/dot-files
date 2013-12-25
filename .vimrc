@@ -169,10 +169,8 @@ nmap <M-x> :bd<CR>
 nmap <M-z> :w<CR>
 nmap <M-q> <C-^>
 
-map <M-a> "a
-map <M-y> "ay
-map <M-p> "ap
-map <M-d> "ad
+nmap <M-a> "a
+nmap <M-=> "+
 
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
@@ -192,20 +190,20 @@ nnoremap <C-j> i<CR><Space><BS><Esc>k$
 noremap <expr> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 imap <Home> <C-o><Home>
 
-vnoremap <silent> <M-r> y:@"<CR>
-nnoremap <silent> <M-r> Vy:@"<CR>
+vnoremap <silent> <M-[> y:@"<CR>
+nnoremap <silent> <M-[> Vy:@"<CR>
 
 nmap <silent> <M-1> :NERDTreeToggle<CR>
+nmap <silent> <M-d> :NERDTreeFind<CR>
 nmap <silent> <M-2> :BuffergatorOpen<CR>
 nmap <silent> <M-3> :TagbarToggle<CR>
 nmap <silent> <M-4> :QFix<CR>
-nmap <silent> <M-5> :NERDTreeFind<CR>
 
 nmap <silent> <M-n> :call <SID>toggleLineNumbering()<CR>
 nmap <silent> <M-/> :call <SID>disableSelection()<CR>
 nmap <silent> <M-\> <plug>NERDCommenterToggle
+vmap <silent> <M-\> <plug>NERDCommenterToggle
 nmap <silent> <M-]> :FixWhitespace<CR>
-nmap <silent> <M-[> :FixWhitespace<CR>
 
 function! s:disableSelection()
   exec "let @/ = ''"
@@ -225,6 +223,19 @@ nmap <M-e> :call EasyMotion#E(0,0)<CR>
 nmap <M-g> :call EasyMotion#E(0,1)<CR>
 nmap <M-f> :call EasyMotion#F(0,0)<CR>
 nmap <M-h> :call EasyMotion#F(0,1)<CR>
+
+nmap <silent> <M-'> :call <SID>toggleQuotesType()<CR>
+
+function! s:toggleQuotesType()
+  let w = matchstr(getline('.'), '\%' . col('.') . "c[^'\"]*['\"]")
+  let q = w[-1:-1]
+  if q == "'"
+    normal cs'"
+  endif
+  if q == '"'
+    normal cs"'
+  endif
+endfunction
 
 "
 " Show TODO's
