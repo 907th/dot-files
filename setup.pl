@@ -24,7 +24,8 @@ use Time::HiRes ('time');
   'Install_NodeJS',
   'Install_Zeal_Documentation_Server',
   'Install_VirtualBox',
-  'Install_LaTeX'
+  'Install_LaTeX',
+  'Install_Vagrant'
 );
 
 %other_opts = (
@@ -362,6 +363,14 @@ sub Install_VirtualBox {
 sub Install_LaTeX {
   Exe(<<'  CMD');
     sudo apt-get -y install texlive-full
+  CMD
+}
+
+sub Install_Vagrant {
+  Exe(<<'  CMD');
+    PKG=vagrant_1.4.2_x86_64.deb
+    wget -O $PKG https://dl.bintray.com/mitchellh/vagrant/$PKG
+    sudo dpkg -i $PKG
   CMD
 }
 
