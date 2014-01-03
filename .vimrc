@@ -170,7 +170,9 @@ nmap <M-z> :w<CR>
 nmap <M-q> <C-^>
 
 nmap <M-a> "a
+vmap <M-a> "a
 nmap <M-=> "+
+vmap <M-=> "+
 
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
