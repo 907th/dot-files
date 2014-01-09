@@ -41,7 +41,6 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
 Bundle '907th/vim-auto-save'
-Bundle '907th/nerdtree'
 Bundle '907th/vim-qfix'
 
 "
@@ -195,8 +194,7 @@ imap <Home> <C-o><Home>
 vnoremap <silent> <M-[> y:@"<CR>
 nnoremap <silent> <M-[> Vy:@"<CR>
 
-nmap <silent> <M-1> :NERDTreeToggle<CR>
-nmap <silent> <M-d> :NERDTreeFind<CR>
+nmap <silent> <M-1> :Ex<CR>
 nmap <silent> <M-2> :BuffergatorOpen<CR>
 nmap <silent> <M-3> :TagbarToggle<CR>
 nmap <silent> <M-4> :QFix<CR>
@@ -227,6 +225,7 @@ nmap <M-f> :call EasyMotion#F(0,0)<CR>
 nmap <M-h> :call EasyMotion#F(0,1)<CR>
 
 nmap <silent> <M-'> :call <SID>toggleQuotesType()<CR>
+nmap <silent> <M-0> :call <SID>deleteRoundBrackets()<CR>
 
 function! s:toggleQuotesType()
   let w = matchstr(getline('.'), '\%' . col('.') . "c[^'\"]*['\"]")
@@ -236,6 +235,14 @@ function! s:toggleQuotesType()
   endif
   if q == '"'
     normal cs"'
+  endif
+endfunction
+
+function! s:deleteRoundBrackets()
+  let w = matchstr(getline('.'), '\%' . col('.') . "c[^\)]*\)")
+  let q = w[-1:-1]
+  if q == ")"
+    exe "normal ds)i\<Space>"
   endif
 endfunction
 
@@ -313,31 +320,6 @@ set tabstop=2
 set shiftwidth=2
 
 "
-" NERDTree
-
-let NERDSpaceDelims = 1
-let NERDTreeWinPos = 'right'
-let NERDTreeWinSize = 30
-let NERDTreeHighlightCursorline = 0
-let NERDTreeMinimalUI = 1
-let NERDTreeBookmarksFile = $HOME . '/.vim/NERDTreeBookmarks'
-let NERDTreeShowBookmarks = 0
-let NERDTreeReuseWindows = 0
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeShowLineNumbers = 1
-
-"
-" Close NERDTree if it is a last window
-
-autocmd bufenter * call <SID>checkNoMoreWindows()
-
-function! s:checkNoMoreWindows()
-  if winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary'
-    exec 'q'
-  endif
-endfunction
-
-"
 " Close help window with 'q'
 
 autocmd bufenter * call <SID>helpWindowMapping()
@@ -350,6 +332,8 @@ endfunction
 
 "
 " Other plugins
+
+let g:netrw_banner = 0
 
 let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy  = 'B'
@@ -372,4 +356,4 @@ let g:ctrlp_custom_ignore = '\v[\/]tmp$'
 let g:ctrlp_max_files = 0
 
 let g:sparkupExecuteMapping = '<M-m>'
-let g:sparkupNextMapping = '<M-n>'
+" let g:sparkupNextMapping = '<M- >'
