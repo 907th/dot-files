@@ -4,8 +4,11 @@ My collection of dot-files.
 
 ## Installation
 
-I typically use `setup.pl` script from this repo to setup new PC:
+I typically use `setup.pl` script from this repo to set up a new PC:
 
 ```bash
-wget -O setup.pl https://raw.github.com/907th/dot-files/master/setup.pl && ./setup.pl
+$ mkdir -p ~/Setup
+$ cd ~/Setup
+$ wget https://raw.github.com/907th/dot-files/master/setup.pl
+$ ./setup.pl
 ```
