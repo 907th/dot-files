@@ -1,19 +1,11 @@
-snippet     f
-alias       fn
-abbr        func() { ... }
-options     head
-  func() { ${1} }
-
-snippet     fu
-alias       fun func
-abbr        func f() { ... }
-  func ${1:name}() {
-    ${2}
-  }
-
-snippet     {
-abbr        { ... }
-  {
-    ${1}
-  }
+snippet fun
+	func() { ${1} }
+snippet func
+	func ${1:name}() {
+		${2}
+	}
+snippet {
+	{
+		${1}
+	}
 
