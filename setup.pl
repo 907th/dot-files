@@ -127,7 +127,8 @@ sub Install_Common_Packages {
       mercurial subversion curl mc xclip xsel sysstat iftop iptraf htop \
       libxslt1-dev libxml2-dev libmagic-dev libmagickwand-dev \
       libpq-dev libqt4-dev libmysqlclient-dev libcurl4-gnutls-dev \
-      libexpat1-dev gettext libz-dev libssl-dev asciidoc
+      libexpat1-dev gettext libz-dev libssl-dev asciidoc \
+      python-pip
   CMD
 }
 
