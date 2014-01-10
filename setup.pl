@@ -20,7 +20,7 @@ use Time::HiRes ('time');
   'Install_ElasticSearch',
   'Setup_Dot_Files',
   'Install_Vundle',
-  'Install_Html2Haml_Wrapper_For_Vim',
+  'Install_Html2Haml',
   'Install_NodeJS',
   'Install_Zeal_Documentation_Server',
   'Install_VirtualBox',
@@ -326,12 +326,11 @@ sub Install_Vundle {
   CMD
 }
 
-sub Install_Html2Haml_Wrapper_For_Vim {
+sub Install_Html2Haml {
   Exe(<<'  CMD');
     RVM='source ~/.rvm/scripts/rvm && rvm'
-    bash -c "$RVM use 1.9.3 && rvm gemset create html2haml"
-    bash -c "$RVM use 1.9.3@html2haml && gem install html2haml"
-    bash -c "$RVM wrapper 1.9.3@html2haml vim html2haml"
+    bash -c "$RVM gemset use --create 1.9.3@html2haml && gem install html2haml"
+    bash -c "$RVM wrapper 1.9.3@html2haml html2haml"
   CMD
 }
 
