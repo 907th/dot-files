@@ -28,28 +28,23 @@ use Time::HiRes ('time');
   'Install_Vagrant'
 );
 
-%other_opts = (
+%menu_opts = (
+  'l' => 'List_All',
   'a' => 'Run_All',
   'x' => 'Exit'
 );
 
 sub MainMenu {
-  print "Choose option to run:\n";
-  foreach (0..$#opts) {
-    printf "%d) %s\n", $_, Name($opts[$_]);
-  }
-  foreach (keys %other_opts) {
-    printf "%s) %s\n", $_, Name($other_opts{$_});
-  }
+  print "Menu\n";
+  printf "%s) %s\n", $_, Name($menu_opts{$_}) foreach (keys %menu_opts);
   print 'Your choice: ';
   my $chosen = <STDIN>;
   chop $chosen;
   if ($chosen =~ m/^\d+$/) {
     Run($opts[$chosen]);
   } else {
-    Run($other_opts{$chosen});
+    Run($menu_opts{$chosen});
   }
-  print "---\n";
 }
 
 sub Run {
@@ -62,12 +57,16 @@ sub Run {
   printf "Running %s...\n", Name($f);
   &$f();
   printf "%s finished in %.4f sec.\n", Name($f), time - $t;
+  print "---\n";
+}
+
+sub List_All {
+  print "Available options:\n";
+  printf "%d) %s\n", $_, Name($opts[$_]) foreach (0 .. $#opts);
 }
 
 sub Run_All {
-  foreach (@opts) {
-    Run($_);
-  }
+  Run($_) foreach (@opts);
 }
 
 sub Exit {
