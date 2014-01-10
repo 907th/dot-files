@@ -190,8 +190,8 @@ nnoremap <C-j> i<CR><Space><BS><Esc>k$
 noremap <expr> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 imap <Home> <C-o><Home>
 
-vnoremap <silent> <M-[> y:@"<CR>
-nnoremap <silent> <M-[> Vy:@"<CR>
+vnoremap <silent> <M-r> y:@"<CR>
+nnoremap <silent> <M-r> Vy:@"<CR>
 
 nmap <silent> <M-1> :Ex<CR>
 nmap <silent> <M-2> :BuffergatorOpen<CR>
@@ -223,11 +223,22 @@ nmap <M-g> :call EasyMotion#E(0,1)<CR>
 nmap <M-f> :call EasyMotion#F(0,0)<CR>
 nmap <M-h> :call EasyMotion#F(0,1)<CR>
 
-nmap <silent> <M-'> :call <SID>toggleQuotesType()<CR>
-nmap <silent> <M-0> :call <SID>deleteRoundBrackets()<CR>
+nmap <M-'> :call <SID>toggleBracketsType()<CR>
+nmap <M-[> :call <SID>deleteBrackets()<CR>
 
-function! s:toggleQuotesType()
-  let w = matchstr(getline('.'), '\%' . col('.') . "c[^'\"]*['\"]")
+" TODO: Refactor to use dictionary
+function! s:toggleBracketsType()
+  let brackets = {
+    \'"' : { 're': '"', 'to': "'" },
+    \"'" : { 're': "'", 'to': '"' },
+    \"[" : { 're': '\[', 'to': '}' },
+    \"]" : { 're': '\]', 'to': '}' },
+    \"{" : { 're': '{', 'to': ')' },
+    \"}" : { 're': '}', 'to': ')' },
+    \"(" : { 're': '(', 'to': ']' },
+    \")" : { 're': ')', 'to': ']' }
+  \}
+  let w = matchstr(getline('.'), '\%' . col('.') . "c[^]'\")}]*[]'\")}]")
   let q = w[-1:-1]
   if q == "'"
     normal cs'"
@@ -235,13 +246,23 @@ function! s:toggleQuotesType()
   if q == '"'
     normal cs"'
   endif
+  if q == ')'
+    normal cs)]
+  endif
+  if q == ']'
+    normal cs]}
+  endif
+  if q == '}'
+    normal cs})
+  endif
 endfunction
 
-function! s:deleteRoundBrackets()
-  let w = matchstr(getline('.'), '\%' . col('.') . "c[^\)]*\)")
+" TODO: Add preceding space only when there is non-space character right before
+function! s:deleteBrackets()
+  let w = matchstr(getline('.'), '\%' . col('.') . "c[^]'\"\)}]*[]'\"\)}]")
   let q = w[-1:-1]
-  if q == ")"
-    exe "normal ds)i\<Space>"
+  if q == ')' || q == ']' || q == '}' || q == '"' || q == "'"
+    exec 'normal ds' . q . "i\<Space>"
   endif
 endfunction
 
@@ -256,7 +277,7 @@ command! Todo Ack! 'TODO|FIXME|NOTE'
 command! Html2haml :call Html2haml()
 
 function! Html2haml()
-  let html2haml = '~/.rvm/bin/vim_html2haml --erb'
+  let html2haml = '~/.rvm/bin/html2haml --erb'
   let temp_file = '/tmp/vim_html2.haml'
   execute 'w !' . html2haml . ' > ' . temp_file
   execute 'pedit ' . temp_file
