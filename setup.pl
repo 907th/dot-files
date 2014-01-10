@@ -25,7 +25,8 @@ use Time::HiRes ('time');
   'Install_Zeal_Documentation_Server',
   'Install_VirtualBox',
   'Install_LaTeX',
-  'Install_Vagrant'
+  'Install_Vagrant',
+  'Install_Go_Compiller'
 );
 
 %menu_opts = (
@@ -371,6 +372,19 @@ sub Install_Vagrant {
     PKG=vagrant_1.4.2_x86_64.deb
     wget -O $PKG https://dl.bintray.com/mitchellh/vagrant/$PKG
     sudo dpkg -i $PKG
+  CMD
+}
+
+sub Install_Go_Compiller {
+  Exe(<<'  CMD');
+    GOROOT=$HOME/.go
+    GOARCH=amd64
+    mkdir -p $GOPATH
+    mkdir -p $GOROOT
+    PKG=go1.2.linux-$GOARCH.tar.gz
+    wget -O $PKG https://go.googlecode.com/files/$PKG
+    tar xzf $PKG
+    mv -T go $GOROOT
   CMD
 }
 

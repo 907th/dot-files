@@ -26,7 +26,7 @@ export PATH="$PATH:/usr/local/heroku/bin"
 # Go vars
 export GOROOT="$HOME/.go"
 export GOPATH="$HOME/.gos"
-export GOARCH='386'
+export GOARCH='amd64'
 export GOOS='linux'
 export PATH="$PATH:$GOROOT/bin"
 
