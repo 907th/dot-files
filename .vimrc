@@ -176,7 +176,6 @@ vmap <M-=> "+
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
 nnoremap S S<Space><BS>
-inoremap <CR> <CR><Space><BS>
 
 imap <M-Up> <Esc>O
 imap <M-Down> <Esc>o
@@ -272,7 +271,7 @@ imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
 
 function! s:myCR()
-  return pumvisible() ? "\<C-y>" : "\<CR>"
+  return pumvisible() ? "\<C-y>" : "\<CR>\<Space>\<BS>"
 endfunction
 
 function! s:myTab()

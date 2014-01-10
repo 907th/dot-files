@@ -3,15 +3,15 @@ snippet #!
 snippet #enc
 	# encoding: utf-8
 snippet des
-	describe ${1:object} do
+	describe '${1}' do
 		${2}
 	end
 snippet it
-	it ${1:acts} do
+	it '${1}' do
 		${2}
 	end
 snippet ctx
-	context ${1:description} do
+	context '${1}' do
 		${2}
 	end
 snippet do
@@ -19,10 +19,18 @@ snippet do
 		${1}
 	end
 snippet dov
-	do |${1:var}|
+	do |${1}|
 		${2}
 	end
 snippet exp
 	expect(${1}).to ${2}
 snippet nexp
 	expect(${1}).not_to ${2}
+snippet nms
+	namespace ${1} do
+		${2}
+	end
+snippet def
+	def ${1}
+		${2}
+	end
