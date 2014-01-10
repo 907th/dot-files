@@ -77,11 +77,11 @@ if has('gui_running')
   set guioptions-=r
   set guifont=Monospace\ 14
   set guicursor+=a:blinkon0
-  colorscheme jellybeans
 else
   set t_Co=256
-  colorscheme jellybeans-csapprox
 end
+
+colorscheme jellybeans
 
 hi ColorColumn guibg=#121212 ctermbg=Black
 
