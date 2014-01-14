@@ -8,6 +8,10 @@ alias tmux='tmux -2'
 # Ack
 alias ack='ack-grep'
 
+# Vim
+alias g='gvim'
+alias v='vim'
+
 # Listing Aliases
 alias l='\ls --color'
 alias ls='\ls --color'
