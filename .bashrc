@@ -12,6 +12,9 @@ alias ack='ack-grep'
 alias g='gvim'
 alias v='vim'
 
+# Git-sh
+alias s='git-sh'
+
 # Listing Aliases
 alias l='\ls --color'
 alias ls='\ls --color'
