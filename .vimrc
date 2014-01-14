@@ -182,6 +182,9 @@ imap <M-Down> <Esc>o
 imap <M-Left> <C-o>B
 imap <M-Right> <C-o>W
 
+nmap <C-Up> <C-y>
+nmap <C-Down> <C-e>
+
 nnoremap zq zr
 nnoremap zQ zR
 nnoremap gn gi<Esc>l
