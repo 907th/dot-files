@@ -141,8 +141,8 @@ nmap <M-Down> <C-w><Down>
 map <M-PageUp> <C-PageUp>
 map <M-PageDown> <C-PageDown>
 
-map <PageUp> <C-u>
-map <PageDown> <C-d>
+map <PageUp> 15<C-y>
+map <PageDown> 15<C-e>
 
 nmap <F1> :tabedit ~/.vimrc<CR>
 nmap <F2> :tabe<CR>
