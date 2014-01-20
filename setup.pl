@@ -128,7 +128,7 @@ sub Install_Common_Packages {
       libxslt1-dev libxml2-dev libmagic-dev libmagickwand-dev \
       libpq-dev libqt4-dev libmysqlclient-dev libcurl4-gnutls-dev \
       libexpat1-dev gettext libz-dev libssl-dev asciidoc \
-      python-pip
+      python-pip gimp imagemagick
   CMD
 }
 
