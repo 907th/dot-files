@@ -22,7 +22,9 @@ alias ll='\ls -l --color'
 alias la='\ls -l -a --color'
 
 # RVM
-export PATH="$PATH:$HOME/.rvm/bin"
+if [[ ! "$PATH" =~ (^|:)"$HOME/.rvm/bin"(:|$) ]]; then
+  export PATH="$PATH:$HOME/.rvm/bin"
+fi
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   . "$HOME/.rvm/scripts/rvm"
 fi
