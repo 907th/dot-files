@@ -1,8 +1,7 @@
 set nocompatible
 
 filetype off
-filetype plugin off
-filetype indent off
+filetype plugin indent off
 
 "
 " Setup Go plugins
@@ -86,13 +85,9 @@ colorscheme jellybeans
 hi ColorColumn guibg=#121212 ctermbg=Black
 
 "
-" Enable filetype detection & plugins
-
-filetype on
-filetype plugin on
-
-"
 " Main setup
+
+filetype plugin indent on
 
 set autoindent
 set autoread
@@ -339,8 +334,9 @@ endfunction
 " Indents
 
 set expandtab
-set tabstop=2
 set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 
 "
 " Close help window with 'q'
