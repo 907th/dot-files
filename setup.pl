@@ -26,7 +26,8 @@ use Time::HiRes ('time');
   'Install_VirtualBox',
   'Install_LaTeX',
   'Install_Vagrant',
-  'Install_Go_Compiller'
+  'Install_Go_Compiller',
+  'Install_Redis'
 );
 
 %menu_opts = (
@@ -384,6 +385,12 @@ sub Install_Go_Compiller {
     wget -O $PKG https://go.googlecode.com/files/$PKG
     tar xzf $PKG
     mv -T go $GOROOT
+  CMD
+}
+
+sub Install_Redis {
+  Exe(<<'  CMD');
+    sudo apt-get -y install redis-server
   CMD
 }
 
