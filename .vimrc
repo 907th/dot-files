@@ -270,7 +270,7 @@ function! s:deleteBrackets()
 endfunction
 
 "
-" Show TODO's
+" Show TODOs
 
 command! Todo Ack! 'TODO|FIXME|NOTE'
 
@@ -352,6 +352,13 @@ function! s:helpWindowMapping()
     exec 'map <buffer> <silent> q :q<CR>'
   endif
 endfunction
+
+"
+" Disable automatic comment insertion on new lines
+autocmd FileType * setlocal
+\ formatoptions-=c
+\ formatoptions-=r
+\ formatoptions-=o
 
 "
 " Other plugins
