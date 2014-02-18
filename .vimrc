@@ -49,7 +49,7 @@ syntax on
 
 let g:jellybeans_overrides = {
 \  'Folded': {
-\    'guifg': 'a0a8b0', 'guibg': '171717',
+\    'guifg': 'a0a8b0', 'guibg': '151515',
 \    'ctermfg': 'Black', 'ctermbg': '',
 \    'attr': 'italic'
 \  },
@@ -67,6 +67,16 @@ let g:jellybeans_overrides = {
 \    'guifg': 'ff90ff', 'guibg': '',
 \    'ctermfg': 'Magenta', 'ctermbg': '',
 \    'attr': ''
+\  },
+\  'ColorColumn': {
+\    'guifg': '', 'guibg': '101010',
+\    'ctermfg': '', 'ctermbg': 'Black',
+\    'attr': ''
+\  },
+\  'SpecialKey': {
+\    'guifg': '333333', 'guibg': '151515',
+\    'ctermfg': '', 'ctermbg': '',
+\    'attr': ''
 \  }
 \}
 
@@ -81,8 +91,6 @@ else
 end
 
 colorscheme jellybeans
-
-hi ColorColumn guibg=#121212 ctermbg=Black
 
 "
 " Main setup
@@ -176,6 +184,8 @@ imap <M-Up> <Esc>O
 imap <M-Down> <Esc>o
 imap <M-Left> <C-o>B
 imap <M-Right> <C-o>W
+
+imap <M-Backspace> <C-d>
 
 nmap <C-Up> <C-y>
 nmap <C-Down> <C-e>
@@ -334,9 +344,9 @@ endfunction
 " Indents
 
 set expandtab
-set shiftwidth=2
-set softtabstop=2
 set tabstop=2
+set shiftwidth=2
+set softtabstop=0
 
 "
 " Close help window with 'q'
