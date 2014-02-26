@@ -95,7 +95,7 @@ colorscheme jellybeans
 "
 " Main setup
 
-filetype plugin indent on
+filetype plugin on
 
 set autoindent
 set autoread
