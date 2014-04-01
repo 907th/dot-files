@@ -1,4 +1,3 @@
-
 # Fix terminal keys
 stty -ixon -ixoff
 
@@ -22,6 +21,7 @@ alias ll='\ls -l --color'
 alias la='\ls -l -a --color'
 
 # RVM
+alias gemset='rvm gemset'
 if [[ ! "$PATH" =~ (^|:)"$HOME/.rvm/bin"(:|$) ]]; then
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
