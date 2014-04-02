@@ -27,7 +27,8 @@ use Time::HiRes ('time');
   'Install_LaTeX',
   'Install_Vagrant',
   'Install_Go_Compiller',
-  'Install_Redis'
+  'Install_Redis',
+  'Install_Docker'
 );
 
 %menu_opts = (
@@ -63,8 +64,12 @@ sub Run {
 }
 
 sub List_All {
+  open my $less, '|less';
+  my $old = select $less;
   print "Available options:\n";
   printf "%d) %s\n", $_, Name($opts[$_]) foreach (0 .. $#opts);
+  close $less;
+  select $old;
 }
 
 sub Run_All {
@@ -391,6 +396,16 @@ sub Install_Go_Compiller {
 sub Install_Redis {
   Exe(<<'  CMD');
     sudo apt-get -y install redis-server
+  CMD
+}
+
+sub Install_Docker {
+  Exe(<<'  CMD');
+    sudo apt-get -y install linux-image-extra-`uname -r`
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+    sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
+    sudo apt-get update
+    sudo apt-get -y install lxc-docker
   CMD
 }
 
