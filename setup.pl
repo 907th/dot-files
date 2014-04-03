@@ -337,8 +337,8 @@ sub Install_Vundle {
 sub Install_Html2Haml {
   Exe(<<'  CMD');
     RVM='source ~/.rvm/scripts/rvm && rvm'
-    bash -c "$RVM gemset use --create 1.9.3@html2haml && gem install html2haml"
-    bash -c "$RVM wrapper 1.9.3@html2haml --no-prefix html2haml"
+    bash -c "$RVM gemset use --create 2.1.1@html2haml && gem install html2haml"
+    bash -c "$RVM wrapper 2.1.1@html2haml --no-prefix html2haml"
   CMD
 }
 
