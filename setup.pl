@@ -305,6 +305,7 @@ sub Setup_Dot_Files {
     ln -sfT $DF/.ackrc ~/.ackrc
     ln -sfT $DF/.vimrc ~/.vimrc
     ln -sfT $DF/.railsrc ~/.railsrc
+    ln -sfT $DF/.rspec ~/.rspec
 
     mkdir -p ~/.vim
     ln -sfT $DF/.vim/colors ~/.vim/colors
