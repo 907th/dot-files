@@ -28,7 +28,8 @@ use Time::HiRes ('time');
   'Install_Vagrant',
   'Install_Go_Compiller',
   'Install_Redis',
-  'Install_Docker'
+  'Install_Docker',
+  'Install_Heroku_Toolbelt'
 );
 
 %menu_opts = (
@@ -408,6 +409,13 @@ sub Install_Docker {
     sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
     sudo apt-get update
     sudo apt-get -y install lxc-docker
+  CMD
+}
+
+
+sub Install_Heroku_Toolbelt {
+  Exe(<<'  CMD');
+    wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
   CMD
 }
 
