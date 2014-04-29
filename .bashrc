@@ -1,18 +1,13 @@
 # Fix terminal keys
 stty -ixon -ixoff
 
-# Tmux
+# Commands aliases
 alias tmux='tmux -2'
-
-# Ack
 alias ack='ack-grep'
-
-# Vim
 alias g='gvim'
 alias v='vim'
-
-# Git-sh
 alias s='git-sh'
+alias h='heroku'
 
 # Listing Aliases
 alias l='\ls --color'

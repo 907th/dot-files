@@ -39,6 +39,9 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
+Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'dockyard/vim-easydir'
+Bundle 'heartsentwined/vim-emblem'
 Bundle '907th/vim-auto-save'
 Bundle '907th/vim-qfix'
 
@@ -295,7 +298,7 @@ endfunction
 " Automatic completion + snippets key mappings
 
 imap <expr> <CR> <SID>myCR()
-imap <expr> <Tab> <SID>myTab()
+"imap <expr> <Tab> <SID>myTab()
 imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
 
