@@ -179,6 +179,9 @@ vmap <M-a> "a
 nmap <M-=> "+
 vmap <M-=> "+
 
+nmap <S-CR> O<Esc>
+nmap <CR> o<Esc>
+
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
 nnoremap S S<Space><BS>
@@ -192,6 +195,8 @@ imap <M-Backspace> <C-d>
 
 nmap <C-Up> <C-y>
 nmap <C-Down> <C-e>
+imap <C-Up> <C-o><C-y>
+imap <C-Down> <C-o><C-e>
 
 nnoremap zq zr
 nnoremap zQ zR
@@ -227,53 +232,43 @@ function! s:toggleLineNumbering()
   endif
 endfunction
 
-nmap <M-w> :call EasyMotion#WB(0,0)<CR>
-nmap <M-b> :call EasyMotion#WB(0,1)<CR>
-nmap <M-e> :call EasyMotion#E(0,0)<CR>
-nmap <M-g> :call EasyMotion#E(0,1)<CR>
-nmap <M-f> :call EasyMotion#F(0,0)<CR>
-nmap <M-h> :call EasyMotion#F(0,1)<CR>
+nmap <M-w> <Plug>(easymotion-w)
+nmap <M-b> <Plug>(easymotion-b)
+nmap <M-e> <Plug>(easymotion-e)
+nmap <M-g> <Plug>(easymotion-ge)
+nmap <M-f> <Plug>(easymotion-f)
+nmap <M-h> <Plug>(easymotion-F)
 
 nmap <M-'> :call <SID>toggleBracketsType()<CR>
-nmap <M-[> :call <SID>deleteBrackets()<CR>
+nmap <silent> <M-[> :call <SID>deleteBrackets()<CR>
 
-" TODO: Refactor to use dictionary
 function! s:toggleBracketsType()
   let brackets = {
-    \'"' : { 're': '"', 'to': "'" },
-    \"'" : { 're': "'", 'to': '"' },
-    \"[" : { 're': '\[', 'to': '}' },
-    \"]" : { 're': '\]', 'to': '}' },
-    \"{" : { 're': '{', 'to': ')' },
-    \"}" : { 're': '}', 'to': ')' },
-    \"(" : { 're': '(', 'to': ']' },
-    \")" : { 're': ')', 'to': ']' }
+    \'"' : "'",    "'" : '"',
+    \"]" : '}',    "}" : ')',    ")" : ']'
   \}
-  let w = matchstr(getline('.'), '\%' . col('.') . "c[^]'\")}]*[]'\")}]")
+  let re = join(map(keys(brackets), '"\\".v:val'))
+  let w = matchstr(getline('.'), '\%' . col('.') . 'c[^' . re . ']*[' . re . ']')
   let q = w[-1:-1]
-  if q == "'"
-    normal cs'"
-  endif
-  if q == '"'
-    normal cs"'
-  endif
-  if q == ')'
-    normal cs)]
-  endif
-  if q == ']'
-    normal cs]}
-  endif
-  if q == '}'
-    normal cs})
+  echo q
+  if has_key(brackets, q)
+    exec 'normal f' . q
+    exec 'normal cs' . q . brackets[q]
   endif
 endfunction
 
-" TODO: Add preceding space only when there is non-space character right before
 function! s:deleteBrackets()
+  " Find nearest bracket and destroy it
   let w = matchstr(getline('.'), '\%' . col('.') . "c[^]'\"\)}]*[]'\"\)}]")
   let q = w[-1:-1]
   if q == ')' || q == ']' || q == '}' || q == '"' || q == "'"
-    exec 'normal ds' . q . "i\<Space>"
+    exec 'normal ds' . q
+
+    " ...and add space before if needed
+    let col = col('.') - 1
+    if col && !(getline('.')[col - 1]  =~ '\s')
+      exec "normal i\<Space>"
+    endif
   endif
 endfunction
 
@@ -298,12 +293,17 @@ endfunction
 " Automatic completion + snippets key mappings
 
 imap <expr> <CR> <SID>myCR()
-"imap <expr> <Tab> <SID>myTab()
+imap <expr> <Esc> <SID>myEsc()
+imap <expr> <Tab> <SID>myTab()
 imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
 
 function! s:myCR()
   return pumvisible() ? "\<C-y>" : "\<CR>\<Space>\<BS>"
+endfunction
+
+function! s:myEsc()
+  return pumvisible() ? "\<C-e>" : "\<Esc>"
 endfunction
 
 function! s:myTab()
@@ -316,7 +316,7 @@ function! s:myTab()
 endfunction
 
 function! s:autoCompleteFunction()
-  if &ft == 'css' || &ft == 'sass'
+  if &ft == 'css' || &ft == 'sass' || &ft == 'scss'
     return "\<C-x>\<C-o>"
   else
     return "\<C-n>"
@@ -338,7 +338,7 @@ endfunction
 
 function! s:snipMateCanBeExpanded()
   let word     = snipMate#WordBelowCursor()
-  let snippets = map(snipMate#GetSnippetsForWordBelowCursor(word, '*', 0), 'v:val[0]')
+  let snippets = map(snipMate#GetSnippetsForWordBelowCursor(word, 0), 'v:val[0]')
   let matches  = filter(snippets, "v:val =~# '\\V\\^" . escape(word, '\') . "\\$'")
   return len(matches) > 0
 endfunction
@@ -394,5 +394,11 @@ let g:ctrlp_switch_buffer = ''
 let g:ctrlp_custom_ignore = '\v[\/]tmp$'
 let g:ctrlp_max_files = 0
 
+let g:ackprg =
+  \ "ack-grep -H --nocolor --nogroup --column --smart-case --follow --ignore-dir={log,tmp}"
+
 let g:sparkupExecuteMapping = '<M-m>'
-" let g:sparkupNextMapping = '<M- >'
+let g:sparkupNextMapping = '<M-,>'
+
+imap <M-n> <Plug>snipMateNextOrTrigger
+smap <M-n> <Plug>snipMateNextOrTrigger
