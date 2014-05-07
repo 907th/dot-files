@@ -144,20 +144,49 @@ nmap <M-Left> <C-w><Left>
 nmap <M-Up> <C-w><Up>
 nmap <M-Down> <C-w><Down>
 
-map <C-Right> E
-map <C-Left> B
 map <C-Up> <C-y>
 map <C-Down> <C-e>
+nmap <silent> <C-Right> :call <SID>wordBoundariesMovement('right', 'normal')<CR>
+nmap <silent> <C-Left> :call <SID>wordBoundariesMovement('left', 'normal')<CR>
+vmap <silent> <C-Right> :call <SID>wordBoundariesMovement('right', 'visual')<CR>
+vmap <silent> <C-Left> :call <SID>wordBoundariesMovement('left', 'visual')<CR>
 
-imap <M-Right> <C-Right>
-imap <M-Left> <C-Left>
-imap <M-Up> <Esc>O
-imap <M-Down> <Esc>o
-
-imap <C-Right> <C-o>E<Right>
-imap <C-Left> <C-o>B
 imap <C-Up> <C-o><C-y>
 imap <C-Down> <C-o><C-e>
+imap <silent> <C-Right> <C-o>:call <SID>wordBoundariesMovement('right', 'insert')<CR>
+imap <silent> <C-Left> <C-o>:call <SID>wordBoundariesMovement('left', 'insert')<CR>
+
+function! s:charUnderCursor(offset)
+  let c = col('.') - 1 + a:offset
+  let l = getline('.')
+  if c >= 0 && c < strlen(l)
+    return l[c]
+  else
+    return ''
+  end
+endfunction
+
+function! s:wordBoundariesMovement(dir, mode) range
+  let s = @/
+  if a:mode == 'visual'
+    normal gv
+  end
+  if a:dir == 'left'
+    call search('\<', 'bW')
+  elseif a:dir == 'right'
+    if a:mode == 'insert'
+      call search('\>', 'W')
+    else
+      call search('.\>', 'W')
+    endif
+  endif
+  let @/ = s
+endfunction
+
+imap <M-Right> <C-o>E<Right>
+imap <M-Left> <C-o>B
+imap <M-Up> <Esc>O
+imap <M-Down> <Esc>o
 
 imap <M-Backspace> <C-d>
 
@@ -170,14 +199,29 @@ map <PageDown> 15<C-e>
 nmap <F1> :tabedit ~/.vimrc<CR>
 nmap <F2> :tabe<CR>
 nmap <F3> :tabc<CR>
-nmap <F9> :call <SID>reset()<CR>
-nmap <F10> :qa<CR>
+nmap <silent> <F9> :call <SID>reset()<CR>
+nmap <silent> <F10> :call <SID>quit()<CR>
 
 function! s:reset()
   exec 'tabnew'
   exec 'tabonly'
-  exec 'silent! BufOnly'
+  exec 'silent BufOnly'
 endfunction
+
+function! s:quit()
+  try
+    silent qa
+  catch /E37:/
+    echo 'Not all changes were saved! Quit (Y/n)? '
+    let c = getchar()
+    if c == 13 || c == 121 || c == 89  " <CR>, y, Y
+      qa!
+    endif
+  endtry
+endfunction
+
+nmap <S-Left> <<
+nmap <S-Right> >>
 
 nmap <M-.> 3<C-w>>
 nmap <M-,> 3<C-w><
@@ -270,8 +314,7 @@ function! s:deleteBrackets()
     exec 'normal ds' . q
 
     " ...and add space before if needed
-    let col = col('.') - 1
-    if col && !(getline('.')[col - 1]  =~ '\s')
+    if s:charUnderCursor(-1) !~ '\s'
       exec "normal i\<Space>"
     endif
   endif
@@ -298,17 +341,12 @@ endfunction
 " Automatic completion + snippets key mappings
 
 imap <expr> <CR> <SID>myCR()
-imap <expr> <Esc> <SID>myEsc()
 imap <expr> <Tab> <SID>myTab()
 imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
 
 function! s:myCR()
   return pumvisible() ? "\<C-y>" : "\<CR>\<Space>\<BS>"
-endfunction
-
-function! s:myEsc()
-  return pumvisible() ? "\<C-e>" : "\<Esc>"
 endfunction
 
 function! s:myTab()
