@@ -144,6 +144,23 @@ nmap <M-Left> <C-w><Left>
 nmap <M-Up> <C-w><Up>
 nmap <M-Down> <C-w><Down>
 
+map <C-Right> E
+map <C-Left> B
+map <C-Up> <C-y>
+map <C-Down> <C-e>
+
+imap <M-Right> <C-Right>
+imap <M-Left> <C-Left>
+imap <M-Up> <Esc>O
+imap <M-Down> <Esc>o
+
+imap <C-Right> <C-o>E<Right>
+imap <C-Left> <C-o>B
+imap <C-Up> <C-o><C-y>
+imap <C-Down> <C-o><C-e>
+
+imap <M-Backspace> <C-d>
+
 map <M-PageUp> <C-PageUp>
 map <M-PageDown> <C-PageDown>
 
@@ -185,18 +202,6 @@ nmap <CR> o<Esc>
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
 nnoremap S S<Space><BS>
-
-imap <M-Up> <Esc>O
-imap <M-Down> <Esc>o
-imap <M-Left> <C-o>B
-imap <M-Right> <C-o>W
-
-imap <M-Backspace> <C-d>
-
-nmap <C-Up> <C-y>
-nmap <C-Down> <C-e>
-imap <C-Up> <C-o><C-y>
-imap <C-Down> <C-o><C-e>
 
 nnoremap zq zr
 nnoremap zQ zR
