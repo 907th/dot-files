@@ -2,8 +2,9 @@
 stty -ixon -ixoff
 
 # Commands aliases
-alias tmux='tmux -2'
 alias ack='ack-grep'
+alias tmux='tmux -2'
+alias t='tmux -2'
 alias g='gvim'
 alias v='vim'
 alias s='git-sh'
