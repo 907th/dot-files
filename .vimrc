@@ -351,7 +351,7 @@ endfunction
 
 function! s:myTab()
   let triggerSnippet = "\<C-r>=snipMate#TriggerSnippet()\<CR>"
-  return pumvisible() ? "\<C-n>" :
+  return pumvisible() ? "\<C-e>" :
 \     <SID>snipMateCanBeExpanded() ? triggerSnippet :
 \       exists('b:snip_state') ? triggerSnippet :
 \         <SID>checkBackSpace() ?  "\<Tab>" :
