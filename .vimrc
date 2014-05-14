@@ -42,6 +42,7 @@ Bundle 'wavded/vim-stylus'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'dockyard/vim-easydir'
 Bundle 'heartsentwined/vim-emblem'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle '907th/vim-auto-save'
 Bundle '907th/vim-qfix'
 
@@ -183,10 +184,13 @@ function! s:wordBoundariesMovement(dir, mode) range
   let @/ = s
 endfunction
 
-imap <M-Right> <C-o>E<Right>
-imap <M-Left> <C-o>B
+imap <M-Left> <C-o><<
+imap <M-Right> <C-o>>>
 imap <M-Up> <Esc>O
 imap <M-Down> <Esc>o
+
+imap <S-Right> <C-o>E<Right>
+imap <S-Left> <C-o>B
 
 imap <M-Backspace> <C-d>
 
@@ -242,6 +246,9 @@ vmap <M-=> "+
 
 nmap <S-CR> O<Esc>
 nmap <CR> o<Esc>
+
+nmap <C-CR> <C-j>
+nmap <C-\> <S-j>
 
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
@@ -342,6 +349,7 @@ endfunction
 
 imap <expr> <CR> <SID>myCR()
 imap <expr> <Tab> <SID>myTab()
+imap <expr> <C-Tab> <SID>myCtrlTab()
 imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
 
@@ -349,13 +357,23 @@ function! s:myCR()
   return pumvisible() ? "\<C-y>" : "\<CR>\<Space>\<BS>"
 endfunction
 
+function! s:triggerSnippet()
+  return "\<C-r>=snipMate#TriggerSnippet()\<CR>"
+endfunction
+
 function! s:myTab()
-  let triggerSnippet = "\<C-r>=snipMate#TriggerSnippet()\<CR>"
   return pumvisible() ? "\<C-e>" :
-\     <SID>snipMateCanBeExpanded() ? triggerSnippet :
-\       exists('b:snip_state') ? triggerSnippet :
+\     <SID>snipMateCanBeExpanded() ? <SID>triggerSnippet() :
+\       exists('b:snip_state') ? <SID>triggerSnippet() :
 \         <SID>checkBackSpace() ?  "\<Tab>" :
 \         <SID>autoCompleteFunction()
+endfunction
+
+function! s:myCtrlTab()
+  if exists('b:snip_state')
+    call b:snip_state.remove()
+  endif
+  return <SID>myTab()
 endfunction
 
 function! s:autoCompleteFunction()
@@ -417,6 +435,8 @@ autocmd FileType * setlocal
 
 let g:netrw_banner = 0
 
+let g:indent_guides_enable_on_vim_startup = 1
+
 let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy  = 'B'
 let g:buffergator_split_size = 12
@@ -443,5 +463,5 @@ let g:ackprg =
 let g:sparkupExecuteMapping = '<M-m>'
 let g:sparkupNextMapping = '<M-,>'
 
-imap <M-n> <Plug>snipMateNextOrTrigger
-smap <M-n> <Plug>snipMateNextOrTrigger
+imap <M-.> <Plug>snipMateNextOrTrigger
+smap <M-.> <Plug>snipMateNextOrTrigger
