@@ -1,52 +1,42 @@
 snippet #!
 	#!/usr/bin/env ruby
-
 snippet #enc
 	# encoding: utf-8
-
+snippet let
+	let(${1}) { ${2} }
 snippet des
 	describe '${1}' do
 		${2}
 	end
-
 snippet it
 	it '${1}' do
 		${2}
 	end
-
-snippet ctx
+snippet con
 	context '${1}' do
 		${2}
 	end
-
 snippet do
 	do
 		${1}
 	end
-
 snippet dov
 	do |${1}|
 		${2}
 	end
-
 snippet exp
 	expect(${1}).to ${2}
-
 snippet nexp
 	expect(${1}).not_to ${2}
-
-snippet cls
+snippet cla
 	class ${1}
 		${2}
 	end
-
 snippet mod
 	module ${1}
 		${2}
 	end
-
 snippet def
 	def ${1}
 		${2}
 	end
-

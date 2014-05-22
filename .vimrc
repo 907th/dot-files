@@ -184,13 +184,13 @@ function! s:wordBoundariesMovement(dir, mode) range
   let @/ = s
 endfunction
 
-imap <M-Left> <C-o><<
-imap <M-Right> <C-o>>>
+imap <S-Left> <C-o><<
+imap <S-Right> <C-o>>>
+
 imap <M-Up> <Esc>O
 imap <M-Down> <Esc>o
-
-imap <S-Right> <C-o>E<Right>
-imap <S-Left> <C-o>B
+imap <M-Right> <C-o>E<Right>
+imap <M-Left> <C-o>B
 
 imap <M-Backspace> <C-d>
 
@@ -238,6 +238,7 @@ nmap <M-c> <C-w>c
 nmap <M-x> :bd<CR>
 nmap <M-z> :w<CR>
 nmap <M-q> <C-^>
+nmap <M-d> dd
 
 nmap <M-a> "a
 vmap <M-a> "a
@@ -248,7 +249,7 @@ nmap <S-CR> O<Esc>
 nmap <CR> o<Esc>
 
 nmap <C-CR> <C-j>
-nmap <C-\> <S-j>
+nmap <C-BS> <S-j>
 
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
