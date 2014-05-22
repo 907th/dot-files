@@ -249,7 +249,7 @@ nmap <S-CR> O<Esc>
 nmap <CR> o<Esc>
 
 nmap <C-CR> <C-j>
-nmap <C-BS> <S-j>
+nmap <C-\> <S-j>
 
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
@@ -296,35 +296,15 @@ nmap <M-g> <Plug>(easymotion-ge)
 nmap <M-f> <Plug>(easymotion-f)
 nmap <M-h> <Plug>(easymotion-F)
 
-nmap <M-'> :call <SID>toggleBracketsType()<CR>
-nmap <silent> <M-[> :call <SID>deleteBrackets()<CR>
+nmap <M-'> :call <SID>toggleQuotes()<CR>
 
-function! s:toggleBracketsType()
-  let brackets = {
-    \'"' : "'",    "'" : '"',
-    \"]" : '}',    "}" : ')',    ")" : ']'
-  \}
-  let re = join(map(keys(brackets), '"\\".v:val'))
+function! s:toggleQuotes()
+  let alt = { '"' : "'", "'" : '"' }
+  let re = join(map(keys(alt), '"\\".v:val'))
   let w = matchstr(getline('.'), '\%' . col('.') . 'c[^' . re . ']*[' . re . ']')
   let q = w[-1:-1]
-  echo q
-  if has_key(brackets, q)
-    exec 'normal f' . q
-    exec 'normal cs' . q . brackets[q]
-  endif
-endfunction
-
-function! s:deleteBrackets()
-  " Find nearest bracket and destroy it
-  let w = matchstr(getline('.'), '\%' . col('.') . "c[^]'\"\)}]*[]'\"\)}]")
-  let q = w[-1:-1]
-  if q == ')' || q == ']' || q == '}' || q == '"' || q == "'"
-    exec 'normal ds' . q
-
-    " ...and add space before if needed
-    if s:charUnderCursor(-1) !~ '\s'
-      exec "normal i\<Space>"
-    endif
+  if has_key(alt, q)
+    exec 'normal cs' . q . alt[q]
   endif
 endfunction
 
@@ -350,7 +330,6 @@ endfunction
 
 imap <expr> <CR> <SID>myCR()
 imap <expr> <Tab> <SID>myTab()
-imap <expr> <C-Tab> <SID>myCtrlTab()
 imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
 
@@ -363,18 +342,14 @@ function! s:triggerSnippet()
 endfunction
 
 function! s:myTab()
-  return pumvisible() ? "\<C-e>" :
-\     <SID>snipMateCanBeExpanded() ? <SID>triggerSnippet() :
-\       exists('b:snip_state') ? <SID>triggerSnippet() :
-\         <SID>checkBackSpace() ?  "\<Tab>" :
-\         <SID>autoCompleteFunction()
-endfunction
-
-function! s:myCtrlTab()
+  " Clear SnipMate tab stops
   if exists('b:snip_state')
     call b:snip_state.remove()
   endif
-  return <SID>myTab()
+  return pumvisible() ? "\<C-e>" :
+\     <SID>snipMateCanBeExpanded() ? <SID>triggerSnippet() :
+\       <SID>checkBackSpace() ?  "\<Tab>" :
+\       <SID>autoCompleteFunction()
 endfunction
 
 function! s:autoCompleteFunction()
