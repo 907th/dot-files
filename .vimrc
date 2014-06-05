@@ -193,6 +193,7 @@ imap <M-Right> <C-o>E<Right>
 imap <M-Left> <C-o>B
 
 imap <M-Backspace> <C-d>
+nmap <Backspace> i<Space><Esc>
 
 map <M-PageUp> <C-PageUp>
 map <M-PageDown> <C-PageDown>
