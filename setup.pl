@@ -29,7 +29,8 @@ use Time::HiRes ('time');
   'Install_Go_Compiller',
   'Install_Redis',
   'Install_Docker',
-  'Install_Heroku_Toolbelt'
+  'Install_Heroku_Toolbelt',
+  'Install_HipChat'
 );
 
 %menu_opts = (
@@ -416,6 +417,15 @@ sub Install_Docker {
 sub Install_Heroku_Toolbelt {
   Exe(<<'  CMD');
     wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  CMD
+}
+
+sub Install_HipChat {
+  Exe(<<'  CMD');
+    sudo sh -c "echo deb http://downloads.hipchat.com/linux/apt stable main > /etc/apt/sources.list.d/atlassian-hipchat.list"
+    wget -O - https://www.hipchat.com/keys/hipchat-linux.key | sudo apt-key add -
+    sudo apt-get -y update
+    sudo apt-get -y install hipchat
   CMD
 }
 
