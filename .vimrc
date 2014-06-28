@@ -43,6 +43,7 @@ Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'dockyard/vim-easydir'
 Bundle 'heartsentwined/vim-emblem'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'honza/dockerfile.vim'
 Bundle '907th/vim-auto-save'
 Bundle '907th/vim-qfix'
 
@@ -194,6 +195,7 @@ imap <M-Left> <C-o>B
 
 imap <M-Backspace> <C-d>
 nmap <Backspace> i<Space><Esc>
+nmap <S-Backspace> a<Space><Esc>
 
 map <M-PageUp> <C-PageUp>
 map <M-PageDown> <C-PageDown>
@@ -317,13 +319,25 @@ command! Todo Ack! 'TODO|FIXME|NOTE'
 "
 " Run html2haml on selected text
 
-command! Html2haml :call Html2haml()
+command! Html2haml :call <SID>Html2haml()
 
-function! Html2haml()
+function! s:Html2haml()
   let html2haml = '~/.rvm/bin/html2haml --erb'
   let temp_file = '/tmp/vim_html2.haml'
   execute 'w !' . html2haml . ' > ' . temp_file
   execute 'pedit ' . temp_file
+endfunction
+
+"
+" Open alternative (en <-> ru) translation file
+
+command! I18next :call <SID>I18next()
+nmap <M-i> <M-v><M-Right>:call <SID>I18next()<CR>
+
+function! s:I18next()
+  let cur = bufname('%')
+  let alt = substitute(cur, '\<\(en\|ru\)\>', '\=submatch(1) == "en" ? "ru" : "en"', '')
+  execute 'edit ' . alt
 endfunction
 
 "
