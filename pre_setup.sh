@@ -30,7 +30,6 @@ cat > $WD/id_rsa.pub
 
 WD=/work
 DF=/work/dot-files
-mkdir -p $WD
 
 sudo apt-get -y install git
 git clone git@github.com:907th/dot-files.git $WD/dot-files
