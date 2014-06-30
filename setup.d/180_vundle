@@ -1,0 +1,3 @@
+WD=~/.vim/bundle
+mkdir -p $WD
+git clone https://github.com/gmarik/vundle.git $WD/vundle

@@ -16,24 +16,16 @@ alias ls='\ls --color'
 alias ll='\ls -l --color'
 alias la='\ls -l -a --color'
 
-# RVM
-alias gemset='rvm gemset'
-if [[ ! "$PATH" =~ (^|:)"$HOME/.rvm/bin"(:|$) ]]; then
-  export PATH="$PATH:$HOME/.rvm/bin"
-fi
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-  . "$HOME/.rvm/scripts/rvm"
-fi
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # Heroku Toolbelt
 export PATH="$PATH:/usr/local/heroku/bin"
 
-# Go vars
-export GOROOT="$HOME/.go"
-export GOPATH="$HOME/.gos"
-export GOARCH='amd64'
-export GOOS='linux'
-export PATH="$PATH:$GOROOT/bin"
+for f in ~/.bashrc.d/*; do
+  . $f
+done
 
 # Editor & Pager
 export PAGER='less'

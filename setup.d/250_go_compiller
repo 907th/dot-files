@@ -1,0 +1,9 @@
+GOROOT=$HOME/.go
+GOARCH=amd64
+mkdir -p $GOPATH
+mkdir -p $GOROOT
+PKG=go1.2.linux-$GOARCH.tar.gz
+wget -O tmp/$PKG https://go.googlecode.com/files/$PKG
+cd tmp
+tar xzf $PKG
+mv -T go $GOROOT

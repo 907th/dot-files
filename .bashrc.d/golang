@@ -1,0 +1,6 @@
+# Golang init
+export GOROOT="$HOME/.go"
+export GOPATH="$HOME/.gos"
+export GOARCH='amd64'
+export GOOS='linux'
+export PATH="$PATH:$GOROOT/bin"

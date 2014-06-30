@@ -1,0 +1,19 @@
+# Remove existing git and gitg
+sudo apt-get -y remove git gitg
+
+# Install git
+wget -O tmp/git.zip https://github.com/git/git/archive/master.zip
+cd tmp
+unzip git.zip
+cd git-master
+make prefix=/usr/local all
+sudo make prefix=/usr/local install
+
+# Install git-subtree plugin
+cd contrib/subtree
+make
+sudo make install
+sudo make install-doc
+
+# Install gitg
+sudo apt-get -y install gitg

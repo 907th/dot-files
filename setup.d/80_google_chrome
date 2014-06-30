@@ -1,0 +1,3 @@
+PKG=google-chrome-stable_current_amd64.deb
+wget -O tmp/$PKG https://dl.google.com/linux/direct/$PKG
+sudo dpkg -i tmp/$PKG

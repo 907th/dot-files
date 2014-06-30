@@ -1,0 +1,3 @@
+PKG=elasticsearch-1.2.1.deb
+wget -O tmp/$PKG https://download.elasticsearch.org/elasticsearch/elasticsearch/$PKG
+sudo dpkg -i tmp/$PKG

@@ -1,14 +1,17 @@
-# Dot-Files
+# dot-files
 
 My collection of dot-files.
 
 ## Installation
 
-I typically use `setup.pl` script from this repo to set up a new PC:
+Run `pre-setup.sh` to configure SSH and to clone the repository to `/work/dot-files`:
 
 ```bash
-$ mkdir -p ~/Setup
-$ cd ~/Setup
-$ wget https://raw.github.com/907th/dot-files/master/setup.pl
-$ ./setup.pl
+$ wget -O - https://raw.githubusercontent.com/907th/dot-files/master/pre_setup.sh | bash
+```
+
+Run `setup.pl` to finish installation:
+
+```bash
+$ /work/dot-files/setup.pl
 ```
