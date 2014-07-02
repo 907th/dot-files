@@ -68,7 +68,7 @@ sub RunScript {
 sub ListScripts {
   open my $less, "| column -c 80 | less";
   my $old = select $less;
-  print join "\n", @scripts;
+  print $_ . "\n" foreach @scripts;
   close $less;
   select $old;
   return 0;
