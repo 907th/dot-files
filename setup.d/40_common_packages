@@ -4,4 +4,4 @@ sudo apt-get -y install \
   libxslt1-dev libxml2-dev libmagic-dev libmagickwand-dev \
   libpq-dev libqt4-dev libmysqlclient-dev libcurl4-gnutls-dev \
   libexpat1-dev gettext libz-dev libssl-dev asciidoc \
-  python-pip gimp imagemagick
+  python-pip gimp imagemagick libsqlite3-dev
