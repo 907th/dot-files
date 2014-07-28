@@ -32,7 +32,9 @@ snippet exd
 	expect do
 		${1}
 	end.to ${2}
-snippet cla
+snippet subj
+	subject { ${1} }
+snippet cls
 	class ${1}
 		${2}
 	end
@@ -44,3 +46,22 @@ snippet def
 	def ${1}
 		${2}
 	end
+snippet conc
+	module ${1}
+		extend ActiveSupport::Concern
+		${2}
+	end
+snippet incl
+	included do
+		${1}
+	end
+snippet clsm
+	module ClassMethods
+		${1}
+	end
+snippet clsf
+	class << self
+		${1}
+	end
+snippet ini
+	initialize${1}

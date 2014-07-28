@@ -269,7 +269,7 @@ imap <Home> <C-o><Home>
 vnoremap <silent> <M-r> y:@"<CR>
 nnoremap <silent> <M-r> Vy:@"<CR>
 
-nmap <silent> <M-1> :Ex<CR>
+nmap <silent> <M-1> :Explore<CR>
 nmap <silent> <M-2> :BuffergatorOpen<CR>
 nmap <silent> <M-3> :TagbarToggle<CR>
 nmap <silent> <M-4> :QFix<CR>
@@ -445,11 +445,11 @@ let g:tagbar_sort = 0
 let g:EasyMotion_leader_key = '<Leader>f'
 
 let g:ctrlp_switch_buffer = ''
-let g:ctrlp_custom_ignore = '\v[\/]tmp$'
+let g:ctrlp_custom_ignore = { 'dir': '\v[\/](tmp|log|vendor[\/]bundle)$' }
 let g:ctrlp_max_files = 0
 
 let g:ackprg =
-  \ "ack-grep -H --nocolor --nogroup --column --smart-case --follow --ignore-dir={log,tmp}"
+  \ "ack-grep -H --nocolor --nogroup --column --smart-case --follow --ignore-dir={log,tmp,vendor/bundle}"
 
 let g:sparkupExecuteMapping = '<M-m>'
 let g:sparkupNextMapping = '<M-,>'
