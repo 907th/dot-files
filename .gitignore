@@ -1,2 +1,4 @@
-.vim/colors/*-csapprox.vim
-tmp
+/.vim/colors/*
+/.vim/bundle
+/.vim/.netrwhist
+/tmp
