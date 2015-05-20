@@ -5,15 +5,15 @@ snippet #enc
 snippet let
 	let(${1}) { ${2} }
 snippet des
-	describe '${1}' do
+	describe "${1}" do
 		${2}
 	end
 snippet it
-	it '${1}' do
+	it "${1}" do
 		${2}
 	end
-snippet con
-	context '${1}' do
+snippet ctx
+	context "${1}" do
 		${2}
 	end
 snippet do
@@ -29,9 +29,7 @@ snippet exp
 snippet nexp
 	expect(${1}).not_to ${2}
 snippet exd
-	expect do
-		${1}
-	end.to ${2}
+	expect do ${1} end.to ${2}
 snippet subj
 	subject { ${1} }
 snippet cls

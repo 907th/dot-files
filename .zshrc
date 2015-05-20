@@ -14,7 +14,19 @@ export LANG=ru_RU.UTF-8
 export EDITOR="vim"
 export PAGER="less"
 
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+# Z
+. `brew --prefix`/etc/profile.d/z.sh
+
+# RVM
 export PATH="$PATH:$HOME/.rvm/bin"
 source "$HOME/.rvm/scripts/rvm"
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+# OCaml package manager (opam)
+. $HOME/.opam/opam-init/init.zsh #> /dev/null 2> /dev/null || true
+
+# Go-lang
+export GOROOT="/usr/local/go"
+export GOPATH="$HOME/.gocode"
+export PATH="$PATH:$GOROOT/bin"
