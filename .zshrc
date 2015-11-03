@@ -4,14 +4,16 @@ ZSH_THEME="robbyrussell"
 
 plugins=(git rvm rails)
 
+alias cdg='cd "$(git rev-parse --show-toplevel)"'
+
 source $ZSH/oh-my-zsh.sh
 
 eval "$(direnv hook zsh)"
 
-export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export LANG=ru_RU.UTF-8
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export PAGER="less"
 
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
@@ -30,3 +32,7 @@ source "$HOME/.rvm/scripts/rvm"
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/.gocode"
 export PATH="$PATH:$GOROOT/bin"
+
+# Adnroid SDK
+export PATH="$PATH:$HOME/Work/android-sdk/tools"
+export PATH="$PATH:$HOME/Work/android-sdk/platform-tools"

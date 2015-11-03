@@ -1,4 +1,3 @@
-/.vim/colors/*
-/.vim/bundle
-/.vim/.netrwhist
+/nvim/bundle
+/nvim/.netrwhist
 /tmp
