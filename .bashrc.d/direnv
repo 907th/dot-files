@@ -1,2 +1,0 @@
-# direnv hook
-eval "$(direnv hook bash)"

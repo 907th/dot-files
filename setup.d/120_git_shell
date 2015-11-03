@@ -1,4 +1,0 @@
-git clone git://github.com/rtomayko/git-sh.git tmp/git-sh
-cd tmp/git-sh
-make
-sudo make install

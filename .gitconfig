@@ -1,7 +1,7 @@
+[push]
+	default = simple
 [user]
 	email = laise@pisem.net
 	name = Alexey Chernenkov
-[push]
-	default = simple
-[alias]
-  subtree = subtree
+[core]
+	excludesfile = /Users/laise/.gitignore_global

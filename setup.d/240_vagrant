@@ -1,3 +1,0 @@
-PKG=vagrant_1.6.3_x86_64.deb
-wget -O tmp/$PKG https://dl.bintray.com/mitchellh/vagrant/$PKG
-sudo dpkg -i tmp/$PKG

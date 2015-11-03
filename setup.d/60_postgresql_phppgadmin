@@ -1,3 +1,0 @@
-sudo apt-get -y install postgresql postgresql-contrib
-sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '1';"
-sudo apt-get -y install pgadmin3

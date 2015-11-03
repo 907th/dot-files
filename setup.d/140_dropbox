@@ -1,3 +1,0 @@
-PKG=dropbox_1.6.0_amd64.deb
-wget -O tmp/$PKG https://www.dropbox.com/download?dl=packages/ubuntu/$PKG
-sudo dpkg -i tmp/$PKG

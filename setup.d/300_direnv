@@ -1,5 +1,0 @@
-git clone http://github.com/zimbatm/direnv tmp/direnv
-cd tmp/direnv
-. ~/.bashrc.d/golang
-make
-sudo make install
