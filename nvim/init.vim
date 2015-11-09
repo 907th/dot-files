@@ -8,6 +8,7 @@ call vundle#begin('~/.config/nvim/bundle')
 
 Bundle 'gmarik/Vundle.vim'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'jszakmeister/vim-togglecursor'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'BufOnly.vim'
 Bundle 'szw/vim-maximizer'
@@ -16,7 +17,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'dahu/vim-fanfingtastic'
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', { 'rtp': 'vim/' }

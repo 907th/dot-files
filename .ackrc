@@ -1,5 +1,0 @@
---type-set=haml:ext:haml
---type-set=less:ext:less
---type-set=sass:ext:sass,scss
---type-set=coffee:ext:coffee
---type-add=js:ext:es6
