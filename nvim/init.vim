@@ -124,10 +124,9 @@ let g:tagbar_sort = 0
 
 let g:EasyMotion_leader_key = '<Leader>f'
 
-let g:ctrlp_switch_buffer = ''
-let g:ctrlp_custom_ignore = { 'dir': '\v[\/](tmp|log|vendor[\/]bundle|run)$' }
+let g:ctrlp_switch_buffer = 0
 let g:ctrlp_max_files = 0
-let g:ctrlp_extensions = ['line']
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 let g:ackprg = 'ack -H --nocolor --nogroup --column --smart-case --follow --ignore-dir={log,tmp,vendor/bundle,db/dumps}'
 
@@ -160,6 +159,11 @@ let g:auto_save_in_insert_mode = 0
 " Key mappings {{{
 
 nmap <Space> :
+
+nmap <Down> gj
+nmap <Up> gk
+vmap <Down> gj
+vmap <Up> gk
 
 nmap <M-w> <Plug>(easymotion-w)
 nmap <M-b> <Plug>(easymotion-b)
