@@ -9,7 +9,6 @@ call vundle#begin('~/.config/nvim/bundle')
 Bundle 'gmarik/Vundle.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'jeetsukumaran/vim-buffergator'
-Bundle 'nanotech/jellybeans.vim'
 Bundle 'BufOnly.vim'
 Bundle 'szw/vim-maximizer'
 Bundle 'godlygeek/csapprox'
@@ -50,6 +49,9 @@ call vundle#end()
 " }}}
 
 " Main settings {{{
+
+syntax on
+colorscheme tomorrow_night_bright
 
 filetype on
 filetype plugin indent on
@@ -97,46 +99,6 @@ autocmd FileType * setlocal
 \ formatoptions-=c
 \ formatoptions-=r
 \ formatoptions-=o
-" }}}
-
-" Appearance {{{
-
-syntax on
-colorscheme jellybeans
-
-let g:jellybeans_overrides = {
-\  'Folded': {
-\    'guifg': 'a0a8b0', 'guibg': '151515',
-\    'ctermfg': 'Black', 'ctermbg': '',
-\    'attr': 'italic'
-\  },
-\  'rubyRegexpDelimiter': {
-\    'guifg': 'fd20b3', 'guibg': '',
-\    'ctermfg': 'Magenta', 'ctermbg': '',
-\    'attr': ''
-\  },
-\  'rubyRegexp': {
-\    'guifg': 'ff40d3', 'guibg': '',
-\    'ctermfg': 'Magenta', 'ctermbg': '',
-\    'attr': ''
-\  },
-\  'rubyRegexpSpecial': {
-\    'guifg': 'ff90ff', 'guibg': '',
-\    'ctermfg': 'Magenta', 'ctermbg': '',
-\    'attr': ''
-\  },
-\  'ColorColumn': {
-\    'guifg': '', 'guibg': '101010',
-\    'ctermfg': '', 'ctermbg': 'Black',
-\    'attr': ''
-\  },
-\  'SpecialKey': {
-\    'guifg': '333333', 'guibg': '151515',
-\    'ctermfg': '', 'ctermbg': '',
-\    'attr': ''
-\  }
-\}
-
 " }}}
 
 " Plugins config {{{
