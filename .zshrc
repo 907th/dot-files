@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git rvm rails)
+plugins=(git rvm rails zsh-syntax-highlighting)
 
 alias cdg='cd "$(git rev-parse --show-toplevel)"'
 
@@ -11,7 +11,8 @@ source $ZSH/oh-my-zsh.sh
 eval "$(direnv hook zsh)"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-export LANG=ru_RU.UTF-8
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 export EDITOR="nvim"
 export PAGER="less"
