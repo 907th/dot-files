@@ -32,6 +32,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tommcdo/vim-fubitive'
 Bundle 'tpope/vim-rvm'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-vinegar'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
@@ -42,6 +43,7 @@ Bundle 'noprompt/vim-yardoc'
 Bundle 'fatih/vim-go'
 Bundle 'rust-lang/rust.vim'
 Bundle 'mxw/vim-jsx'
+Bundle 'othree/yajs.vim'
 Bundle '907th/vim-auto-save'
 Bundle '907th/vim-qfix'
 
@@ -104,8 +106,6 @@ autocmd FileType * setlocal
 
 " Plugins config {{{
 
-let g:netrw_banner = 0
-
 let g:indent_guides_enable_on_vim_startup = 1
 
 let g:buffergator_sort_regime = 'mru'
@@ -122,7 +122,7 @@ let g:tagbar_width = 35
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
 
-let g:EasyMotion_leader_key = '<Leader>f'
+let g:EasyMotion_leader_key = '<Leader>'
 
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_max_files = 0
@@ -158,24 +158,17 @@ let g:auto_save_in_insert_mode = 0
 
 " Key mappings {{{
 
-nmap <Space> :
+nmap <Space> <Leader>
 
 nmap <Down> gj
 nmap <Up> gk
 vmap <Down> gj
 vmap <Up> gk
 
-nmap <M-w> <Plug>(easymotion-w)
-nmap <M-b> <Plug>(easymotion-b)
-nmap <M-e> <Plug>(easymotion-e)
-nmap <M-g> <Plug>(easymotion-ge)
-nmap <M-f> <Plug>(easymotion-f)
-nmap <M-h> <Plug>(easymotion-F)
-
-nmap <S-Up> 5<C-y>
-nmap <S-Down> 5<C-e>
-vmap <S-Up> 5<C-y>Û2MÛ2M
-vmap <S-Down> 5<C-e>
+nmap <S-Up> <C-u>
+nmap <S-Down> <C-d>
+vmap <S-Up> <C-u>
+vmap <S-Down> <C-d>
 
 imap <M-Up> <C-o>O
 imap <M-Down> <C-o>o
@@ -215,20 +208,24 @@ imap <S-Up> <C-o>20<C-y>
 imap <S-Down> <C-o>20<C-e>
 
 nmap <silent> <F1> :help <C-r><C-w><CR>
-nmap <silent> <F2> :Explore<CR>
-nmap <silent> <F3> :BuffergatorToggle<CR>
-nmap <silent> <F4> :TagbarToggle<CR>
-nmap <silent> <F5> :QFix<CR>
+nmap <silent> <F2> :tabnew<CR>
+nmap <silent> <F3> :tabclose<CR>
+nmap <silent> <F5> :checktime<CR>
 nmap <silent> <F9> :tabnew<CR>:tabonly<CR>:BufOnly<CR>
+nmap <silent> <F10> :qa<CR>
 
-nmap <M-]> :FixWhitespace<CR>
-nmap <M-\> gcc
-nmap <M-/> :let @/ = ''<CR>
+nmap <silent> <M-1> :Explore<CR>
+nmap <silent> <M-2> :BuffergatorToggle<CR>
+nmap <silent> <M-3> :TagbarToggle<CR>
+nmap <silent> <M-4> :QFix<CR>
 
-nmap <Leader>t :tabnew<CR>
-nmap <Leader>w :tabclose<CR>
-nmap <C-Right> :tabnext<CR>
-nmap <C-Left> :tabprev<CR>
+nmap <Leader><Space> :
+nmap <Leader>ss :s/
+nmap <Leader>sa :%s/
+nmap <Leader>c' :s/'/"/g<CR>
+
+nmap <silent> <C-Right> :tabnext<CR>
+nmap <silent> <C-Left> :tabprev<CR>
 
 nmap <M-Left> <C-w>h
 nmap <M-Right> <C-w>l
@@ -237,11 +234,13 @@ nmap <M-Up> <C-w>k
 nmap <M-c> <C-w>c
 nmap <M-s> <C-w>s
 nmap <M-v> <C-w>v
-nmap <M-a> :w<CR>
-nmap <M-x> :q<CR>
-nmap <M-z> :MaximizerToggle!<CR>
-
-nmap <M-p> :CtrlPLine<CR>
+nmap <M-t> <C-w>T
+nmap <silent> <M-a> :w<CR>
+nmap <silent> <M-x> :bd<CR>
+nmap <silent> <M-z> :MaximizerToggle!<CR>
+nmap <silent> <M-]> :FixWhitespace<CR>
+nmap <silent> <M-/> :let @/ = ''<CR>
+nmap <M-\> gcc
 
 " }}}
 
