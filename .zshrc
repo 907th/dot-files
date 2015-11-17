@@ -4,7 +4,8 @@ ZSH_THEME="robbyrussell"
 
 plugins=(git rvm rails zsh-syntax-highlighting)
 
-alias cdg='cd "$(git rev-parse --show-toplevel)"'
+# Aliases
+alias gcd='cd "$(git rev-parse --show-toplevel)"'
 
 source $ZSH/oh-my-zsh.sh
 
