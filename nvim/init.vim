@@ -44,6 +44,7 @@ Bundle 'fatih/vim-go'
 Bundle 'rust-lang/rust.vim'
 Bundle 'mxw/vim-jsx'
 Bundle 'othree/yajs.vim'
+Bundle 'elixir-lang/vim-elixir'
 Bundle '907th/vim-auto-save'
 Bundle '907th/vim-qfix'
 
@@ -150,9 +151,15 @@ let g:maximizer_restore_on_winleave = 1
 
 let g:AutoPairsShortcutToggle = ''
 let g:AutoPairsShortcutJump = ''
-let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutFastWrap = "<M-'>"
+let g:AutoPairsShortcutBackInsert = '<M-[>'
+let g:AutoPairsCenterLine = 0
 
 let g:auto_save_in_insert_mode = 0
+
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
 
 " }}}
 
