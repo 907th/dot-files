@@ -36,3 +36,6 @@ source "$HOME/.rvm/scripts/rvm"
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/.gocode"
 export PATH="$PATH:$GOROOT/bin"
+
+# Docker
+eval "$(docker-machine env default)"
