@@ -208,6 +208,8 @@ imap <Home> <C-o><Home>
 
 nmap <C-Up> <C-y>
 nmap <C-Down> <C-e>
+imap <C-Up> <C-o><C-y>
+imap <C-Down> <C-o><C-e>
 
 nmap <S-Up> 20<C-y>
 nmap <S-Down> 20<C-e>
@@ -221,15 +223,15 @@ nmap <silent> <F5> :checktime<CR>
 nmap <silent> <F9> :tabnew<CR>:tabonly<CR>:BufOnly<CR>
 nmap <silent> <F10> :qa<CR>
 
-nmap <silent> <M-1> :Explore<CR>
-nmap <silent> <M-2> :BuffergatorToggle<CR>
-nmap <silent> <M-3> :TagbarToggle<CR>
-nmap <silent> <M-4> :QFix<CR>
+nmap <silent> <M-1> :BuffergatorToggle<CR>
+nmap <silent> <M-2> :TagbarToggle<CR>
+nmap <silent> <M-3> :QFix<CR>
 
 nmap <Leader><Space> :
 nmap <Leader>ss :s/
 nmap <Leader>sa :%s/
-nmap <Leader>c' :s/'/"/g<CR>
+nmap <Leader>' :s/'/"/g<CR>
+nmap <silent> <Leader>y :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
 
 nmap <silent> <C-Right> :tabnext<CR>
 nmap <silent> <C-Left> :tabprev<CR>
