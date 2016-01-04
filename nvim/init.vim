@@ -42,8 +42,8 @@ Bundle 'honza/dockerfile.vim'
 Bundle 'noprompt/vim-yardoc'
 Bundle 'fatih/vim-go'
 Bundle 'rust-lang/rust.vim'
-Bundle 'mxw/vim-jsx'
 Bundle 'othree/yajs.vim'
+Bundle 'mxw/vim-jsx'
 Bundle 'elixir-lang/vim-elixir'
 Bundle '907th/vim-auto-save'
 Bundle '907th/vim-qfix'
@@ -160,6 +160,8 @@ let g:auto_save_in_insert_mode = 0
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
+
+let g:jsx_ext_required = 0
 
 " }}}
 
