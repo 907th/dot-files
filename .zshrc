@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 # Plugins
-plugins=(git rvm rails bundler zsh-syntax-highlighting)
+plugins=(git rvm rails bundler zsh-syntax-highlighting docker)
 export BUNDLED_COMMANDS=(foreman mina)
 
 source $ZSH/oh-my-zsh.sh
@@ -38,4 +38,4 @@ export GOPATH="$HOME/.gocode"
 export PATH="$PATH:$GOROOT/bin"
 
 # Docker
-eval "$(docker-machine env default)"
+eval "$(docker-machine env dev)"

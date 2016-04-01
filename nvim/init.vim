@@ -15,7 +15,6 @@ Bundle 'szw/vim-maximizer'
 Bundle 'godlygeek/csapprox'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
-Bundle 'dahu/vim-fanfingtastic'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'rking/ag.vim'
 Bundle 'bronson/vim-trailing-whitespace'
@@ -42,9 +41,8 @@ Bundle 'honza/dockerfile.vim'
 Bundle 'noprompt/vim-yardoc'
 Bundle 'fatih/vim-go'
 Bundle 'rust-lang/rust.vim'
-Bundle 'othree/yajs.vim'
-Bundle 'mxw/vim-jsx'
 Bundle 'elixir-lang/vim-elixir'
+Bundle 'jvirtanen/vim-octave'
 Bundle '907th/vim-auto-save'
 Bundle '907th/vim-qfix'
 
@@ -160,8 +158,6 @@ let g:auto_save_in_insert_mode = 0
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
-
-let g:jsx_ext_required = 0
 
 " }}}
 
