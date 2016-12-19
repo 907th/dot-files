@@ -2,6 +2,10 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
+# Fix ^M instead if ^J when hitting <Enter> (typically in `git add -p`)
+# See http://askubuntu.com/questions/441744/pressing-enter-produces-m-instead-of-a-newline
+stty icrnl
+
 # Plugins
 plugins=(git rvm rails bundler zsh-syntax-highlighting docker)
 export BUNDLED_COMMANDS=(foreman mina)
@@ -13,6 +17,8 @@ eval "$(direnv hook zsh)"
 # Aliases
 alias gcd='cd "$(git rev-parse --show-toplevel)"'
 alias n='nvim'
+alias rub='rubocop'
+alias rug='rubocop-git'
 
 # Env vars
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
@@ -32,8 +38,11 @@ source `brew --prefix`/etc/profile.d/z.sh
 export PATH="$PATH:$HOME/.rvm/bin"
 source "$HOME/.rvm/scripts/rvm"
 
+# NVM
+export NVM_DIR="/Users/laise/.nvm"
+source "$NVM_DIR/nvm.sh"
+
 # Go-lang
-export GOROOT="/usr/local/go"
 export GOPATH="$HOME/.gocode"
 export PATH="$PATH:$GOROOT/bin"
 

@@ -20,6 +20,7 @@ Bundle 'rking/ag.vim'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
+Bundle 'chiedo/vim-case-convert'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
@@ -32,9 +33,11 @@ Bundle 'tommcdo/vim-fubitive'
 Bundle 'tpope/vim-rvm'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-vinegar'
-Bundle 'scrooloose/syntastic'
+Bundle 'ngmy/vim-rubocop'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'isRuslan/vim-es6'
+Bundle 'mxw/vim-jsx'
 Bundle 'dockyard/vim-easydir'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'honza/dockerfile.vim'
@@ -43,6 +46,7 @@ Bundle 'fatih/vim-go'
 Bundle 'rust-lang/rust.vim'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'jvirtanen/vim-octave'
+Bundle 'cespare/vim-toml'
 Bundle '907th/vim-auto-save'
 Bundle '907th/vim-qfix'
 
@@ -125,7 +129,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_max_files = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g "" --ignore .git'
 
 let g:ackprg = 'ack -H --nocolor --nogroup --column --smart-case --follow --ignore-dir={log,tmp,vendor/bundle,db/dumps}'
 
@@ -134,7 +138,7 @@ let g:sparkupNextMapping = '<M-,>'
 
 let g:typescript_compiler_binary = './npm_exec tsc'
 
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
@@ -178,7 +182,6 @@ vmap <S-Down> <C-d>
 imap <M-Up> <C-o>O
 imap <M-Down> <C-o>o
 
-nmap <Tab> O<Esc>
 nmap <CR> o<Esc>
 
 nmap <S-Left> <<
@@ -228,6 +231,7 @@ nmap <silent> <M-3> :QFix<CR>
 nmap <Leader><Space> :
 nmap <Leader>ss :s/
 nmap <Leader>sa :%s/
+nmap <Leader>sw :%s/<C-R><C-W>/
 nmap <Leader>' :s/'/"/g<CR>
 nmap <silent> <Leader>y :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
 
