@@ -6,7 +6,7 @@
 " Default GUI Colours
 let s:foreground = "eaeaea"
 let s:background = "000000"
-let s:selection = "424242"
+let s:selection = "626262"
 let s:line = "2a2a2a"
 let s:comment = "969896"
 let s:red = "d54e53"
@@ -237,6 +237,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("NonText", s:selection, "", "")
 	call <SID>X("SpecialKey", s:selection, "", "")
 	call <SID>X("Search", s:background, s:yellow, "")
+	call <SID>X("IncSearch", s:background, s:red, "NONE")
 	call <SID>X("TabLine", s:window, s:foreground, "reverse")
 	call <SID>X("TabLineFill", s:window, s:foreground, "reverse")
 	call <SID>X("StatusLine", s:window, s:yellow, "reverse")

@@ -7,6 +7,7 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim/
 call vundle#begin('~/.config/nvim/bundle')
 
 Bundle 'gmarik/Vundle.vim'
+Bundle 'chriskempson/base16-vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'jszakmeister/vim-togglecursor'
 Bundle 'jeetsukumaran/vim-buffergator'
@@ -16,7 +17,7 @@ Bundle 'godlygeek/csapprox'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'rking/ag.vim'
+Bundle 'mileszs/ack.vim'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
@@ -47,8 +48,8 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'jvirtanen/vim-octave'
 Bundle 'cespare/vim-toml'
+Bundle 'rizzatti/dash.vim'
 Bundle '907th/vim-auto-save'
-Bundle '907th/vim-qfix'
 
 call vundle#end()
 
@@ -105,11 +106,10 @@ autocmd FileType * setlocal
 \ formatoptions-=c
 \ formatoptions-=r
 \ formatoptions-=o
+
 " }}}
 
 " Plugins config {{{
-
-let g:indent_guides_enable_on_vim_startup = 1
 
 let g:buffergator_sort_regime = 'mru'
 let g:buffergator_show_full_directory_path = 0
@@ -131,7 +131,8 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_max_files = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g "" --ignore .git'
 
-let g:ackprg = 'ack -H --nocolor --nogroup --column --smart-case --follow --ignore-dir={log,tmp,vendor/bundle,db/dumps}'
+let g:ackprg = 'ag --vimgrep'
+cnoreabbrev Ag Ack!
 
 let g:sparkupExecuteMapping = '<M-m>'
 let g:sparkupNextMapping = '<M-,>'
@@ -146,8 +147,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_ruby_checkers = ["mri", "rubocop"]
 let g:syntastic_mode_map = { "mode": "passive", "active_filetypes": [], "passive_filetypes": [] }
 
-let g:ft_improved_nohighlight = 1
-
 let g:maximizer_set_default_mapping = 0
 let g:maximizer_restore_on_winleave = 1
 
@@ -157,17 +156,16 @@ let g:AutoPairsShortcutFastWrap = "<M-'>"
 let g:AutoPairsShortcutBackInsert = '<M-[>'
 let g:AutoPairsCenterLine = 0
 
-let g:auto_save_in_insert_mode = 0
+let g:rustfmt_autosave = 1
 
-let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
 
 " }}}
 
 " Key mappings {{{
-
-nmap <Space> <Leader>
 
 nmap <Down> gj
 nmap <Up> gk
@@ -183,26 +181,27 @@ imap <M-Up> <C-o>O
 imap <M-Down> <C-o>o
 
 nmap <CR> o<Esc>
+nmap <Backspace> O<Esc>
 
 nmap <S-Left> <<
 nmap <S-Right> >>
 imap <S-Left> <C-o><<
 imap <S-Right> <C-o>>>
 
-nmap <Backspace> i<Space><Esc>
 nmap <Del> a<Space><Esc>
+nmap <Space> i<Space><Esc>
 
 nmap <M-.> 3<C-w>>
 nmap <M-,> 3<C-w><
 nmap <M-k> <C-w>-
 nmap <M-j> <C-w>+
 
-nnoremap <C-j> i<CR><Space><BS><Esc>k$
+nnoremap <C-j> i<CR><Left><Right><Esc>k$
 nmap <M-BS> J
 
-nnoremap o o<Space><BS>
-nnoremap O O<Space><BS>
-nnoremap S S<Space><BS>
+nnoremap o o<Left><Right>
+nnoremap O O<Left><Right>
+nnoremap S S<Left><Right>
 
 noremap <expr> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 imap <Home> <C-o><Home>
@@ -226,9 +225,9 @@ nmap <silent> <F10> :qa<CR>
 
 nmap <silent> <M-1> :BuffergatorToggle<CR>
 nmap <silent> <M-2> :TagbarToggle<CR>
-nmap <silent> <M-3> :QFix<CR>
+nmap <silent> <M-3> :copen<CR>
+nmap <silent> <M-4> :lopen<CR>
 
-nmap <Leader><Space> :
 nmap <Leader>ss :s/
 nmap <Leader>sa :%s/
 nmap <Leader>sw :%s/<C-R><C-W>/

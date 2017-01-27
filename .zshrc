@@ -48,3 +48,6 @@ export PATH="$PATH:$GOROOT/bin"
 
 # Docker
 eval "$(docker-machine env dev)"
+
+# Rust, Cargo
+export PATH="$PATH:$HOME/.cargo/bin"
