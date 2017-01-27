@@ -1,7 +1,7 @@
 [push]
 	default = simple
 [user]
-	email = laise@pisem.net
+	email = aychernenkov@gmail.com
 	name = Alexey Chernenkov
 [core]
 	excludesfile = /Users/laise/.gitignore_global

@@ -7,21 +7,19 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim/
 call vundle#begin('~/.config/nvim/bundle')
 
 Bundle 'gmarik/Vundle.vim'
-Bundle 'chriskempson/base16-vim'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'itchyny/lightline.vim'
 Bundle 'jszakmeister/vim-togglecursor'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'BufOnly.vim'
 Bundle 'szw/vim-maximizer'
-Bundle 'godlygeek/csapprox'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'mileszs/ack.vim'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'junegunn/vim-easy-align'
 Bundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
-Bundle 'chiedo/vim-case-convert'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
@@ -30,14 +28,15 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tommcdo/vim-fubitive'
 Bundle 'tpope/vim-rvm'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-vinegar'
+Bundle 'tpope/vim-abolish'
+Bundle 'tommcdo/vim-fubitive'
 Bundle 'ngmy/vim-rubocop'
+Bundle 'slim-template/vim-slim.git'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'isRuslan/vim-es6'
 Bundle 'mxw/vim-jsx'
 Bundle 'dockyard/vim-easydir'
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -45,10 +44,14 @@ Bundle 'honza/dockerfile.vim'
 Bundle 'noprompt/vim-yardoc'
 Bundle 'fatih/vim-go'
 Bundle 'rust-lang/rust.vim'
-Bundle 'elixir-lang/vim-elixir'
+Bundle 'elixir-editors/vim-elixir'
+Bundle 'mhinz/vim-mix-format'
+Bundle 'elmcast/elm-vim'
 Bundle 'jvirtanen/vim-octave'
 Bundle 'cespare/vim-toml'
 Bundle 'rizzatti/dash.vim'
+Bundle 'posva/vim-vue'
+Bundle 'pangloss/vim-javascript'
 Bundle '907th/vim-auto-save'
 
 call vundle#end()
@@ -96,6 +99,8 @@ set colorcolumn=80
 set splitright
 set splitbelow
 set cursorline
+set noshowmode
+set diffopt=filler,vertical
 
 set expandtab
 set tabstop=2
@@ -158,10 +163,18 @@ let g:AutoPairsCenterLine = 0
 
 let g:rustfmt_autosave = 1
 
+let g:elm_setup_keybindings = 0
+
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
+
+let g:mix_format_on_save = 0
+let g:mix_format_options = '--check-equivalent'
+let g:mix_format_silent_errors = 1
+
+cnoreabbrev S/ Subvert/
 
 " }}}
 
@@ -232,7 +245,8 @@ nmap <Leader>ss :s/
 nmap <Leader>sa :%s/
 nmap <Leader>sw :%s/<C-R><C-W>/
 nmap <Leader>' :s/'/"/g<CR>
-nmap <silent> <Leader>y :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
+nmap <silent> <Leader>yy :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
+nmap <silent> <Leader>yr :let @+ = "rspec " . fnamemodify(expand("%"), ":~:.") . ":" . line(".")<CR>
 
 nmap <silent> <C-Right> :tabnext<CR>
 nmap <silent> <C-Left> :tabprev<CR>
@@ -251,6 +265,9 @@ nmap <silent> <M-z> :MaximizerToggle!<CR>
 nmap <silent> <M-]> :FixWhitespace<CR>
 nmap <silent> <M-/> :let @/ = ''<CR>
 nmap <M-\> gcc
+
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " }}}
 

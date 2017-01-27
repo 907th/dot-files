@@ -16,6 +16,15 @@ snippet it
 	it "${1}" do
 		${2}
 	end
+snippet itlog
+	it "creates user log entry" do
+		expect do perform end.to change(UserLog, :count).by(1)
+		expect(UserLog.last).to have_attributes(
+			user: user,
+			action: ${1},
+			loggable: ${2}
+		)
+	end
 snippet ctx
 	context "${1}" do
 		${2}

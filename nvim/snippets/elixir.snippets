@@ -1,0 +1,198 @@
+snippet do
+	do
+		${1}
+	end
+snippet put
+	IO.puts "${1}"
+snippet ins
+	IO.inspect ${1}
+snippet if
+	if ${1} do
+		${2}
+	end
+snippet if:
+	if ${1}, do: ${2}
+snippet ife
+	if ${1} do
+		${2}
+	else
+		${3}
+	end
+snippet ife:
+	if ${1}, do: ${2}, else: ${3}
+snippet unless
+	unless ${1} do
+		${2}
+	end
+snippet unless:
+	unless ${1}, do: ${2}
+snippet unlesse
+	unless ${1} do
+		${2}
+	else
+		${3}
+	end
+snippet unlesse:
+	unless ${1}, do: ${2}, else: ${3}
+snippet cond
+	cond do
+		${1} ->
+		${2}
+	end
+snippet case
+	case ${1} do
+		${2} ->
+		${3}
+	end
+snippet for
+	for ${1} <- ${2} do
+		${3}
+	end
+snippet for:
+	for ${1} <- ${2}, do: ${3}
+snippet forinto
+	for ${1} <- ${2}, into: ${3} do
+		${4}
+	end
+snippet with
+	with ${1} <- ${2} do
+		${3}
+	end
+snippet withe
+	with ${1} <- ${2} do
+		${3}
+	else
+		${4}
+	end
+snippet def
+	def ${1} do
+		${2}
+	end
+snippet def:
+	def ${1}, do: ${2}
+snippet defim
+	defimpl ${1}, for: ${2} do
+		${3}
+	end
+snippet defma
+	defmacro ${1} do
+		${2}
+	end
+snippet defmo
+	defmodule ${1} do
+		${2}
+	end
+snippet defp
+	defp ${1} do
+		${2}
+	end
+snippet defp:
+	defp ${1}, do: ${2}
+snippet defpr
+	defprotocol ${1}, [${2}]
+snippet defre
+	defrecord ${1}, ${2}
+snippet fn
+	fn ${1} -> ${2} end
+snippet rec
+	receive do
+		${1} -> ${2}
+	end
+snippet req
+	require ${1}
+snippet imp
+	import ${1}
+snippet ali
+	alias ${1}
+snippet test
+	test "${1}" do
+		${2}
+	end
+snippet testc
+	test "${1}", %{conn: conn} do
+		${2}
+	end
+snippet des
+	describe "${1}" do
+		${2}
+	end
+snippet usexu
+	use ExUnit.Case
+snippet try
+	try do
+		${1}
+	rescue
+		${2} -> ${3}
+	end
+snippet pry
+	require IEx; IEx.pry
+snippet qu
+	quote do
+		${1}
+	end
+snippet beh
+	@behaviour ${1}
+snippet p
+	|> ${1}
+snippet >e pipe to each
+	|> Enum.each(fn ${1} -> ${2} end)
+snippet >m pipe to map
+	|> Enum.map(fn ${1} -> ${2} end)
+snippet >f pipe to filter
+	|> Enum.filter(fn ${1} -> ${2} end)
+snippet >r pipe to reduce
+	|> Enum.reduce(${1}, fn ${2}, ${3} -> ${4} end)
+snippet >i pipe to inspect
+	|> IO.inspect
+snippet cs
+	@doc false
+	def child_spec(${1}) do
+		%{
+			id: __MODULE__,
+			start: {__MODULE__, :start_link, []},
+			restart: :permanent,
+			shutdown: 5000,
+			type: :worker
+		}
+	end
+snippet gs basic genserver structure
+	use GenServer
+
+	@doc false
+	def start_link do
+		GenServer.start_link(__MODULE__, ${1})
+	end
+
+	@impl true
+	def init(state) do
+		{:ok, state}
+	end
+snippet impl
+	@impl true
+	def ${1} do
+		${2}
+	end
+snippet @doc
+	@doc """
+	${1}
+	"""
+snippet @docf
+	@doc false
+snippet @mdoc
+	@moduledoc """
+	${1}
+	"""
+snippet @mdocf
+	@moduledoc false
+snippet @sp
+	@spec ${1}(${2}) :: ${3}
+snippet @op
+	@opaque ${1} :: ${2}
+snippet @ty
+	@type ${1} :: ${2}
+snippet @typ
+	@typep ${1} :: ${2}
+snippet @cb
+	@callback ${1}(${2}) :: ${3}
+snippet @im
+	@impl true
