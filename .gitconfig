@@ -2,6 +2,12 @@
 	default = simple
 [user]
 	email = aychernenkov@gmail.com
-	name = Alexey Chernenkov
+	name = Aleksei Chernenkov
 [core]
 	excludesfile = /Users/laise/.gitignore_global
+	autocrlf = input
+	ignorecase = false
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master

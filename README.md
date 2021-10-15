@@ -1,3 +1,4 @@
 # dot-files
 
-My collection of dot-files. Seems like it'll always be a "work in progress".
+This is my collection of dot-files.
+It will always be in a "Work In Progress" status, of course.

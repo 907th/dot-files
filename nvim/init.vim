@@ -8,7 +8,8 @@ call vundle#begin('~/.config/nvim/bundle')
 
 Bundle 'gmarik/Vundle.vim'
 Bundle 'itchyny/lightline.vim'
-Bundle 'jszakmeister/vim-togglecursor'
+Bundle 'chriskempson/base16-vim'
+Bundle 'ayu-theme/ayu-vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'BufOnly.vim'
 Bundle 'szw/vim-maximizer'
@@ -53,6 +54,7 @@ Bundle 'rizzatti/dash.vim'
 Bundle 'posva/vim-vue'
 Bundle 'pangloss/vim-javascript'
 Bundle '907th/vim-auto-save'
+Bundle 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
 
@@ -61,7 +63,7 @@ call vundle#end()
 " Main settings {{{
 
 syntax on
-colorscheme tomorrow_night_bright
+colorscheme base16-default-dark
 
 filetype on
 filetype plugin indent on
@@ -99,6 +101,7 @@ set colorcolumn=80
 set splitright
 set splitbelow
 set cursorline
+set termguicolors
 set noshowmode
 set diffopt=filler,vertical
 
@@ -160,6 +163,8 @@ let g:AutoPairsShortcutJump = ''
 let g:AutoPairsShortcutFastWrap = "<M-'>"
 let g:AutoPairsShortcutBackInsert = '<M-[>'
 let g:AutoPairsCenterLine = 0
+
+let g:javascript_plugin_jsdoc = 1
 
 let g:rustfmt_autosave = 1
 
