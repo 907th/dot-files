@@ -1,6 +1,4 @@
-export ZSH=$HOME/.oh-my-zsh
-
-ZSH_THEME="robbyrussell"
+echo "Initialising ZSH"
 
 # Increase max open files limit (default is 256)
 ulimit -S -n 2048
@@ -9,32 +7,42 @@ ulimit -S -n 2048
 # See http://askubuntu.com/questions/441744/pressing-enter-produces-m-instead-of-a-newline
 stty icrnl
 
-plugins=(zsh-syntax-highlighting git rvm rails bundler docker ansible kubectl)
-source $ZSH/oh-my-zsh.sh
-eval "$(direnv hook zsh)"
-autoload -U add-zsh-hook
+# A command for sourcing other scripts
+source-script() {
+  if [[ -f "$1" ]]; then
+    source "$1"
+    echo "Script loaded: $1"
+    return 0
+  else
+    echo "Script does not exist: $1"
+    return 1
+  fi
+}
 
-# Aliases
-alias gcd='cd "$(git rev-parse --show-toplevel)"' # fast cd to git repo root dir
-alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed
-alias v='nvim'
-
-# Env vars
+# Env
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-export EDITOR="nvim"
+export EDITOR="vim"
 export PAGER="less"
-
-# Java
 export JAVA_HOME=$(/usr/libexec/java_home)
+export NVM_DIR="$HOME/.nvm"
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_THEME="robbyrussell"
 
-# Z
-source `brew --prefix`/etc/profile.d/z.sh
+# Aliases
+alias gcd='cd "$(git rev-parse --show-toplevel)"' # go to a git repository root directory
+alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed
+alias v='vim'
+
+# Oh My Zsh
+plugins=(zsh-syntax-highlighting zsh-z git rvm rails bundler docker)
+source-script "$ZSH/oh-my-zsh.sh"
+
+# FZF
+source-script "$HOME/.fzf.zsh"
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
 load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use
@@ -43,27 +51,13 @@ load-nvmrc() {
     nvm use default
   fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-# Go-lang
-export GOPATH="$HOME/.gocode"
-
-# Rust/Cargo
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# Ansible
-export ANSIBLE_NOCOWS=1
-
-# TeX
-export PATH="$PATH:/Library/TeX/texbin"
-
-# Flutter
-export PATH="$PATH:$HOME/Work/Flutter/flutter/bin"
-
-# Yarn
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+if source-script "$NVM_DIR/nvm.sh"; then
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+fi
 
 # RVM
-export PATH="$HOME/.rvm/bin:$PATH"
-source "$HOME/.rvm/scripts/rvm"
+if source-script "$HOME/.rvm/scripts/rvm"; then
+  export PATH="$HOME/.rvm/bin:$PATH"
+fi
+
