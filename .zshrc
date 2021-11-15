@@ -36,7 +36,7 @@ alias mc='mc -u' # -u disables subshell support and dramatically increases UI sp
 alias v='vim'
 
 # Oh My Zsh
-plugins=(zsh-syntax-highlighting zsh-z git rvm rails bundler docker)
+plugins=(zsh-z git rvm rails bundler docker zsh-syntax-highlighting)
 source-script "$ZSH/oh-my-zsh.sh"
 
 # FZF
@@ -52,6 +52,7 @@ load-nvmrc() {
   fi
 }
 if source-script "$NVM_DIR/nvm.sh"; then
+  source-script "$NVM_DIR/bash_completion"
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
 fi

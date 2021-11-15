@@ -5,7 +5,7 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'jeffkreeftmeijer/vim-dim'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'schickling/vim-bufonly'
 Plug 'szw/vim-maximizer'
@@ -14,7 +14,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'jiangmiao/auto-pairs'
 Plug 'mileszs/ack.vim'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'dockyard/vim-easydir'
@@ -83,10 +82,8 @@ set nowritebackup
 set noswapfile
 set listchars=tab:\ \ ,trail:.
 set list
-set colorcolumn=80
 set splitright
 set splitbelow
-set cursorline
 set noshowmode
 set diffopt=filler,vertical
 set expandtab
@@ -94,6 +91,9 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=0
 
+set cpoptions+=I " Do not delete autoindentation after cursor movement
+
+" This always sets format options (https://vi.stackexchange.com/a/9367)
 autocmd FileType * setlocal
 \ formatoptions-=c
 \ formatoptions-=r
@@ -117,8 +117,6 @@ let g:tagbar_width = 35
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
 
-let g:EasyMotion_leader_key = '<Leader>'
-
 let g:ackprg = 'ag --vimgrep'
 cnoreabbrev Ag Ack!
 
@@ -127,18 +125,11 @@ let g:typescript_compiler_binary = './npm_exec tsc'
 let g:maximizer_set_default_mapping = 0
 let g:maximizer_restore_on_winleave = 1
 
-let g:AutoPairsShortcutToggle = ''
-let g:AutoPairsShortcutJump = ''
-let g:AutoPairsShortcutFastWrap = "<M-'>"
-let g:AutoPairsShortcutBackInsert = '<M-[>'
-let g:AutoPairsCenterLine = 0
+let g:AutoPairsShortcutJump = '<Leader>pj'
+let g:AutoPairsShortcutFastWrap = '<Leader>pw'
+let g:AutoPairsShortcutBackInsert = '<Leader>pb'
 
 let g:javascript_plugin_jsdoc = 1
-
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
 
 let g:snipMate = { 'snippet_version' : 1 }
 
@@ -161,92 +152,34 @@ nnoremap <Backspace> O<Esc>
 nnoremap <Del> a<Space><Esc>
 nnoremap <Space> i<Space><Esc>
 
-" <M-Up/Down>
-imap [1;3A <C-o>O
-imap [1;3B <C-o>o
-
-" <S-Up/Down>
-nmap [1;2A] 15<C-y>
-nmap [1;2B] 15<C-e>
-imap [1;2A] <C-o>15<C-y>
-imap [1;2B] <C-o>15<C-e>
-
-" <S-M-Up/Down>
-nmap [1;10A <C-y>
-nmap [1;10B <C-e>
-imap [1;10A <C-o><C-y>
-imap [1;10B <C-o><C-e>
-
-" <S-Left/Right>
-nmap [1;2D <<
-nmap [1;2C >>
-imap [1;2D <C-o><<
-imap [1;2C <C-o>>>
-
-" Move cursor after inserting new line a little
-" to disable default blank line deletion behaviour.
-nnoremap <C-j> i<CR><Left><Right><Esc>k$
-nnoremap o o<Left><Right>
-nnoremap O O<Left><Right>
-nnoremap S S<Left><Right>
-
-" <F1/2/3/5/9/10>
-nmap <silent> OP :help <C-r><C-w><CR>
-nmap <silent> OQ :tabnew<CR>
-nmap <silent> OR :tabclose<CR>
-nmap <silent> [15~ :checktime<CR>
-nmap <silent> [20~ :tabnew<CR>:tabonly<CR>:BufOnly<CR>
-nmap <silent> [21~ :qa<CR>
-
-" <M-1/2/3/4>
-nmap <silent> 1 :BuffergatorToggle<CR>
-nmap <silent> 2 :TagbarToggle<CR>
-nmap <silent> 3 :copen<CR>
-nmap <silent> 4 :lopen<CR>
-
-nmap <Leader>ss :s/
-nmap <Leader>sa :%s/
-nmap <Leader>sw :%s/<C-R><C-W>/
-
-nmap <Leader>' :s/'/"/g<CR>
-nmap <Leader>" :s/"/'/g<CR>
+nmap <Leader>1 :BuffergatorToggle<CR>
+nmap <Leader>2 :TagbarToggle<CR>
 
 nmap <silent> <Leader>yy :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
-nmap <silent> <Leader>yr :let @+ = fnamemodify(expand("%"), ":~:.") . ":" . line(".")<CR>
+nmap <silent> <Leader>yl :let @+ = fnamemodify(expand("%"), ":~:.") . ":" . line(".")<CR>
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-nmap \ gcc
+" <S-Left/Right>
+nmap <silent> [1;2D :tabprev<CR>
+nmap <silent> [1;2C :tabnext<CR>
 
-" <D-Right/Left>
-nmap <silent> [1;5C :tabnext<CR>
-nmap <silent> [1;5D :tabprev<CR>
+" <M-Left/Right/Up/Down>
+nmap <silent> [1;3D <C-w>h
+nmap <silent> [1;3C <C-w>l
+nmap <silent> [1;3A <C-w>k
+nmap <silent> [1;3B <C-w>j
 
-" <M-Left/Right/Down/Up>
-nmap [1;3D <C-w>h
-nmap [1;3C <C-w>l
-nmap [1;3B <C-w>j
-nmap [1;3A <C-w>k
+nmap <Leader>w :w<CR>
+nmap <Leader>q :q<CR>
+nmap <Leader>t :tabnew<CR>
+nmap <Leader>z :MaximizerToggle!<CR>
+nmap <Leader>] :FixWhitespace<CR>
+nmap <Leader>/ :let @/ = ''<CR>
+nmap <Leader>sw :%s/<C-R><C-W>/
 
-" <M-c/s/v/t>
-nmap c <C-w>c
-nmap s <C-w>s
-nmap v <C-w>v
-nmap t <C-w>T
-
-" <M-./,/k/j>
-nmap . 3<C-w>>
-nmap , 3<C-w><
-nmap k <C-w>-
-nmap j <C-w>+
-
-" <M-a/x/z/]/\/\\>
-nmap a :w<CR>
-nmap x :bd<CR>
-nmap z :MaximizerToggle!<CR>
-nmap w :FixWhitespace<CR>
-nmap / :let @/ = ''<CR>
+command Reset tabnew | tabonly | BufOnly
 
 " }}}
 
@@ -305,3 +238,4 @@ function! s:snipMateCanBeExpanded()
 endfunction
 
 " }}}
+
