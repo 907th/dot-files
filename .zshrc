@@ -59,6 +59,6 @@ fi
 
 # RVM
 if source-script "$HOME/.rvm/scripts/rvm"; then
-  export PATH="$HOME/.rvm/bin:$PATH"
+  export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
