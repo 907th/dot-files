@@ -31,7 +31,6 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="robbyrussell"
 
 # Aliases
-alias gcd='cd "$(git rev-parse --show-toplevel)"' # go to a git repository root directory
 alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed
 alias v='vim'
 
