@@ -62,6 +62,7 @@ set hidden
 set fileencoding=utf-8
 set mouse=a
 set mousehide
+set ttymouse=xterm2
 set backspace=2
 set laststatus=2
 set scrolloff=2
@@ -172,16 +173,17 @@ nmap <Leader>9 :Reset<CR>
 nmap <Leader>a :w<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>x :bd<CR>
-nmap <Leader>h <C-w>s
+nmap <Leader>s <C-w>s
 nmap <Leader>v <C-w>v
-nmap <Leader>t :tabnew<CR>
-nmap <Leader>c :tabclose<CR>
+nmap <Leader>c <C-w>c
+nmap <Leader>tn :tabnew<CR>
+nmap <Leader>tc :tabclose<CR>
 nmap <Leader>z :MaximizerToggle!<CR>
 nmap <Leader>f :FZF<CR>
 nmap <Leader>] :FixWhitespace<CR>
-nmap <Leader>/ :let @/ = ''<CR>
-nmap <Leader>sa :%s/
-nmap <Leader>sw :%s/<C-R><C-W>/
+nmap <Leader>// :let @/ = ''<CR>
+nmap <Leader>/a :%s/
+nmap <Leader>/w :%s/<C-R><C-W>/
 
 nmap <silent> <Leader>yy :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
 nmap <silent> <Leader>yl :let @+ = fnamemodify(expand("%"), ":~:.") . ":" . line(".")<CR>
