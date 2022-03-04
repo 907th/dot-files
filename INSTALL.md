@@ -2,6 +2,7 @@
 
 List of additional software:
 - iTerm2
+- Karabiner-Elements
 - Acrobat Reader
 - Coconut Battery
 - Menu Meters

@@ -6,7 +6,10 @@ echo "Installing Homebrew"
 
 echo "Installing ZSH"
 brew install zsh
-chsh -s $(which zsh)
+
+echo "Changing default shell to ZSH"
+sudo sh -c "echo \"$(which zsh)\" >> /etc/shells"
+sudo chsh -s "$(which zsh)" "$USER"
 
 echo "Installing Oh My ZSH"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
