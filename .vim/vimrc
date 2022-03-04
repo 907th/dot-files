@@ -150,6 +150,7 @@ imap <Home> <C-o><Home>
 
 nnoremap <CR> o<Esc>
 nnoremap <Backspace> O<Esc>
+nnoremap <C-J> i<CR><Esc>
 
 nnoremap <Del> a<Space><Esc>
 nnoremap <Space> i<Space><Esc>
@@ -175,15 +176,13 @@ nmap <Leader>q :q<CR>
 nmap <Leader>x :bd<CR>
 nmap <Leader>s <C-w>s
 nmap <Leader>v <C-w>v
-nmap <Leader>c <C-w>c
-nmap <Leader>tn :tabnew<CR>
-nmap <Leader>tc :tabclose<CR>
+nmap <Leader>w :tabnew<CR>
 nmap <Leader>z :MaximizerToggle!<CR>
 nmap <Leader>f :FZF<CR>
 nmap <Leader>] :FixWhitespace<CR>
-nmap <Leader>// :let @/ = ''<CR>
-nmap <Leader>/a :%s/
-nmap <Leader>/w :%s/<C-R><C-W>/
+nmap <Leader>/ :let @/ = ''<CR>
+nmap <Leader>ee :%s/
+nmap <Leader>ew :%s/<C-R><C-W>/
 
 nmap <silent> <Leader>yy :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
 nmap <silent> <Leader>yl :let @+ = fnamemodify(expand("%"), ":~:.") . ":" . line(".")<CR>
