@@ -20,3 +20,4 @@ List of additional software:
 - Recordbox 5
 - MP3 Gain Express
 - MP3 Spek
+- eqMac
