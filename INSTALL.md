@@ -7,6 +7,7 @@ List of additional software:
 - Coconut Battery
 - Menu Meters
 - Docker
+- Java
 - Google Chrome
 - Google Drive
 - Monosnap
