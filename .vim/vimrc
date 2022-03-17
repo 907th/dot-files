@@ -176,6 +176,7 @@ nmap <Leader>q :q<CR>
 nmap <Leader>x :bd<CR>
 nmap <Leader>s <C-w>s
 nmap <Leader>v <C-w>v
+nmap <Leader>c <C-w>c
 nmap <Leader>w :tabnew<CR>
 nmap <Leader>z :MaximizerToggle!<CR>
 nmap <Leader>f :FZF<CR>
