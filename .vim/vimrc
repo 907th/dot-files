@@ -34,6 +34,7 @@ Plug 'honza/dockerfile.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'cakebaker/scss-syntax.vim'
+Plug '907th/vim-auto-save'
 
 call plug#end()
 

@@ -61,3 +61,9 @@ if source-script "$HOME/.rvm/scripts/rvm"; then
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
+# Rust
+export PATH="$PATH:$HOME/.cargo/bin"
+
+# Go lang
+export PATH="$PATH:/usr/local/go/bin"
+
