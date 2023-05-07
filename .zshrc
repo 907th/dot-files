@@ -3,10 +3,6 @@ echo "Initialising ZSH"
 # Increase max open files limit (default is 256)
 ulimit -S -n 2048
 
-# Fix ^M instead if ^J when hitting <Enter> (typically in `git add -p`)
-# See http://askubuntu.com/questions/441744/pressing-enter-produces-m-instead-of-a-newline
-stty icrnl
-
 # A command for sourcing other scripts
 source-script() {
   if [[ -f "$1" ]]; then
@@ -35,35 +31,20 @@ alias mc='mc -u' # -u disables subshell support and dramatically increases UI sp
 alias v='vim'
 
 # Oh My Zsh
-plugins=(zsh-z git rvm rails bundler docker zsh-syntax-highlighting)
+plugins=(zsh-z git rvm rails bundler docker zsh-syntax-highlighting kubectl)
 source-script "$ZSH/oh-my-zsh.sh"
 
 # FZF
 source-script "$HOME/.fzf.zsh"
 
 # NVM
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use
-  elif [[ $(nvm version) != $(nvm version default)  ]]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-if source-script "$NVM_DIR/nvm.sh"; then
-  source-script "$NVM_DIR/bash_completion"
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
-fi
+source-script "$NVM_DIR/nvm.sh"
 
 # RVM
-if source-script "$HOME/.rvm/scripts/rvm"; then
-  export PATH="$PATH:$HOME/.rvm/bin"
-fi
+source-script "$HOME/.rvm/scripts/rvm"
 
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin"
 
 # Go lang
 export PATH="$PATH:/usr/local/go/bin"
-

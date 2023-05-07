@@ -62,8 +62,6 @@ set wrap
 set hidden
 set fileencoding=utf-8
 set mouse=a
-set mousehide
-set ttymouse=xterm2
 set backspace=2
 set laststatus=2
 set scrolloff=2
