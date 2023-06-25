@@ -24,14 +24,20 @@ export PAGER="less"
 export JAVA_HOME=$(/usr/libexec/java_home)
 export NVM_DIR="$HOME/.nvm"
 export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME="robbyrussell"
+export ZSH_THEME=""
 
 # Aliases
 alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed
+alias v='mvim'
 
 # Oh My Zsh
 plugins=(zsh-z git rvm rails bundler docker zsh-syntax-highlighting kubectl)
 source-script "$ZSH/oh-my-zsh.sh"
+
+# Pure prompt
+fpath+=($HOME/.zsh-pure)
+autoload -U promptinit; promptinit
+prompt pure
 
 # FZF
 source-script "$HOME/.fzf.zsh"

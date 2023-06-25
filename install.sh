@@ -1,8 +1,9 @@
 #!/bin/bash
+
 set -e
 
 echo "Installing Homebrew"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 echo "Installing ZSH"
 brew install zsh
@@ -18,11 +19,14 @@ echo "Installing FZF"
 brew install fzf
 $(brew --prefix)/opt/fzf/install
 
-echo "Installing Z"
+echo "Downloading Z"
 zsh -i -c 'git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z'
 
-echo "Installing ZSH Syntax Highliting"
+echo "Downloading ZSH Syntax Highliting"
 zsh -i -c 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting'
+
+echo "Downloading Pure prompt"
+git clone https://github.com/sindresorhus/pure.git $HOME/.zsh-pure
 
 echo "Installing Vim"
 brew install vim
@@ -33,8 +37,18 @@ curl -sSL https://get.rvm.io | bash -s stable --autolibs=read-fail
 echo "Installing NVM"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
-echo "Linking dot-files"
-SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+echo "Creating MacVim link"
+sudo ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/mvim
+
+echo "Downloading Dracula theme for Midnight Commander"
+MC_THEMES_DIR=$HOME/.local/share/mc/skins
+MC_DRACULA_THEME_URL=https://raw.githubusercontent.com/dracula/midnight-commander/master/skins
+mkdir -p $MC_THEMES_DIR
+curl -s $MC_DRACULA_THEME_URL/dracula.ini -o $MC_THEMES_DIR/dracula.ini
+curl -s $MC_DRACULA_THEME_URL/dracula256.ini -o $MC_THEMES_DIR/dracula256.ini
+
+echo "Linking another dot-files"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 create-link() {
   local source="$SCRIPT_DIR/$1"
   local target="$HOME/$1"
@@ -55,8 +69,4 @@ create-link .psqlrc
 create-link .tmux.conf
 create-link .zshrc
 
-echo "Creating MacVim link"
-sudo ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/mvim
-
 echo "Done"
-
