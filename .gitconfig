@@ -1,13 +1,14 @@
+[core]
+	autocrlf = input
+	ignorecase = false
+	excludesfile = /Users/907th/.gitignore_global
+	hookspath = /Users/907th/.git_settings/hooks
+[init]
+	defaultBranch = master
 [push]
 	default = simple
+[pull]
+	rebase = false
 [user]
 	email = aychernenkov@gmail.com
 	name = Aleksei Chernenkov
-[core]
-	excludesfile = /Users/laise/.gitignore_global
-	autocrlf = input
-	ignorecase = false
-[pull]
-	rebase = false
-[init]
-	defaultBranch = master

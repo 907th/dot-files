@@ -2,6 +2,7 @@
 
 List of additional software:
 - iTerm2
+- MacVim
 - Karabiner-Elements
 - Acrobat Reader
 - Coconut Battery

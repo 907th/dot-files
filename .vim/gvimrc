@@ -4,22 +4,17 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'jeffkreeftmeijer/vim-dim'
 Plug 'vim-airline/vim-airline'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'schickling/vim-bufonly'
 Plug 'szw/vim-maximizer'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf'
-Plug 'jiangmiao/auto-pairs'
 Plug 'mileszs/ack.vim'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'dockyard/vim-easydir'
-Plug 'MarcWeber/vim-addon-mw-utils' " dependency of vim-snipmate
-Plug 'tomtom/tlib_vim' " dependency of vim-snipmate
-Plug 'garbas/vim-snipmate'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -27,14 +22,16 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rails'
-Plug 'tommcdo/vim-fubitive'
+Plug 'marcweber/vim-addon-mw-utils' " for vim-snipmate
+Plug 'tomtom/tlib_vim' " for vim-snipmate
+Plug 'garbas/vim-snipmate'
 Plug 'vim-ruby/vim-ruby'
 Plug 'noprompt/vim-yardoc'
 Plug 'honza/dockerfile.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'
 Plug 'cakebaker/scss-syntax.vim'
-Plug '907th/vim-auto-save'
+Plug 'fatih/vim-go', { 'do': ':goupdatebinaries' }
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -43,17 +40,14 @@ call plug#end()
 " Main settings {{{
 
 syntax on
-colorscheme dim
-
-" Enable RGB colors
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+colorscheme slate
 
 filetype on
 filetype plugin on
 filetype indent on
 
+set guifont=Menlo-Regular:h16
+set fullscreen
 set autoindent
 set autoread
 set number
@@ -71,12 +65,13 @@ set hlsearch
 set ignorecase
 set smartcase
 set foldenable
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevelstart=99
 set showcmd
 set wildmenu
-set wildmode=list:longest
-set completeopt=menuone,preview
+set wildmode=full
+set completeopt=menuone,noselect
+set omnifunc=syntaxcomplete#Complete
 set nobackup
 set nowritebackup
 set noswapfile
@@ -90,10 +85,14 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=0
-
+set belloff=all
+set guicursor=a:blinkon0
+set background=dark
+set showtabline=2
+set clipboard=unnamed
 set cpoptions+=I " Do not delete autoindentation after cursor movement
 
-" This always sets format options (https://vi.stackexchange.com/a/9367)
+" Set the following format options despite of what ftplugin wants to set (https://vi.stackexchange.com/a/9367)
 autocmd FileType * setlocal
 \ formatoptions-=c
 \ formatoptions-=r
@@ -120,15 +119,8 @@ let g:tagbar_sort = 0
 let g:ackprg = 'ag --vimgrep'
 cnoreabbrev Ag Ack!
 
-let g:typescript_compiler_binary = './npm_exec tsc'
-
 let g:maximizer_set_default_mapping = 0
 let g:maximizer_restore_on_winleave = 1
-
-let g:AutoPairsCenterLine = 0
-let g:AutoPairsMultilineClose = 0
-let g:AutoPairsShortcutFastWrap = '<Leader>pp'
-let g:AutoPairsShortcutBackInsert = '<Leader>pi'
 
 let g:javascript_plugin_jsdoc = 1
 
@@ -157,31 +149,22 @@ nnoremap <Space> i<Space><Esc>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" <S-Left/Right>
-nmap <silent> [1;2D :tabprev<CR>
-nmap <silent> [1;2C :tabnext<CR>
-
 " <M-Left/Right/Up/Down>
-nmap <silent> [1;3D <C-w>h
-nmap <silent> [1;3C <C-w>l
-nmap <silent> [1;3A <C-w>k
-nmap <silent> [1;3B <C-w>j
+nmap <silent> <M-D-Left> <C-w>h
+nmap <silent> <M-D-Right> <C-w>l
+nmap <silent> <M-D-Up> <C-w>k
+nmap <silent> <M-D-Down> <C-w>j
+nmap <silent> <D-d> <C-w>v
+nmap <silent> <D-D> <C-w>s
+nmap <silent> <S-D-CR> :MaximizerToggle!<CR>
 
 nmap <Leader>1 :BuffergatorToggle<CR>
 nmap <Leader>2 :TagbarToggle<CR>
+nmap <Leader>5 :checktime<CR>
 nmap <Leader>9 :Reset<CR>
-nmap <Leader>a :w<CR>
-nmap <Leader>q :q<CR>
-nmap <Leader>x :bd<CR>
-nmap <Leader>s <C-w>s
-nmap <Leader>v <C-w>v
-nmap <Leader>c <C-w>c
-nmap <Leader>w :tabnew<CR>
-nmap <Leader>z :MaximizerToggle!<CR>
 nmap <Leader>f :FZF<CR>
 nmap <Leader>] :FixWhitespace<CR>
 nmap <Leader>/ :let @/ = ''<CR>
-nmap <Leader>ee :%s/
 nmap <Leader>ew :%s/<C-R><C-W>/
 
 nmap <silent> <Leader>yy :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
@@ -197,32 +180,16 @@ imap <expr> <CR> <SID>myCR()
 imap <expr> <Tab> <SID>myTab()
 imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
+imap <89> <C-n><C-p>
 
 function! s:myCR()
   return pumvisible() ? "\<C-y>" : "\<CR>\<Space>\<BS>"
 endfunction
 
-function! s:triggerSnippet()
-  return "\<C-r>=snipMate#TriggerSnippet()\<CR>"
-endfunction
-
 function! s:myTab()
-  " Clear SnipMate tab stops
-  if exists('b:snip_state')
-    call b:snip_state.remove()
-  endif
   return pumvisible() ? "\<C-e>" :
 \     <SID>snipMateCanBeExpanded() ? <SID>triggerSnippet() :
-\       <SID>checkBackSpace() ?  "\<Tab>" :
-\       <SID>autoCompleteFunction()
-endfunction
-
-function! s:autoCompleteFunction()
-  if &ft == 'css' || &ft == 'sass' || &ft == 'scss'
-    return "\<C-x>\<C-o>"
-  else
-    return "\<C-n>"
-  endif
+\       <SID>checkBackSpace() ?  "\<Tab>" : "\<C-x>\<C-o>\<C-p>"
 endfunction
 
 function! s:myUp()
@@ -239,11 +206,14 @@ function! s:checkBackSpace()
 endfunction
 
 function! s:snipMateCanBeExpanded()
-  let word     = snipMate#WordBelowCursor()
+  let word = snipMate#WordBelowCursor()
   let snippets = map(snipMate#GetSnippetsForWordBelowCursor(word, 0), 'v:val[0]')
-  let matches  = filter(snippets, "v:val =~# '\\V\\^" . escape(word, '\') . "\\$'")
+  let matches = filter(snippets, "v:val =~# '\\V\\^" . escape(word, '\') . "\\$'")
   return len(matches) > 0
 endfunction
 
-" }}}
+function! s:triggerSnippet()
+  return "\<C-r>=snipMate#TriggerSnippet()\<CR>"
+endfunction
 
+" }}}

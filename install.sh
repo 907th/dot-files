@@ -55,5 +55,8 @@ create-link .psqlrc
 create-link .tmux.conf
 create-link .zshrc
 
+echo "Creating MacVim link"
+sudo ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/mvim
+
 echo "Done"
 
