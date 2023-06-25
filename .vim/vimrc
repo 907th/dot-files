@@ -71,8 +71,8 @@ set foldlevelstart=99
 set showcmd
 set wildmenu
 set wildmode=full
-set completeopt=menuone,noselect
 set omnifunc=syntaxcomplete#Complete
+set completeopt=menuone
 set nobackup
 set nowritebackup
 set noswapfile
@@ -179,7 +179,6 @@ imap <expr> <CR> <SID>myCR()
 imap <expr> <Tab> <SID>myTab()
 imap <expr> <Up> <SID>myUp()
 imap <expr> <Down> <SID>myDown()
-imap <89> <C-n><C-p>
 
 function! s:myCR()
   return pumvisible() ? "\<C-y>" : "\<CR>\<Space>\<BS>"
@@ -188,7 +187,7 @@ endfunction
 function! s:myTab()
   return pumvisible() ? "\<C-e>" :
 \     <SID>snipMateCanBeExpanded() ? <SID>triggerSnippet() :
-\       <SID>checkBackSpace() ?  "\<Tab>" : "\<C-x>\<C-o>\<C-p>"
+\       <SID>checkBackSpace() ?  "\<Tab>" : "\<C-n>"
 endfunction
 
 function! s:myUp()

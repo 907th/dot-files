@@ -28,7 +28,7 @@ export ZSH_THEME=""
 
 # Aliases
 alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed
-alias v='mvim'
+alias v='mvim --remote'
 
 # Oh My Zsh
 plugins=(zsh-z git rvm rails bundler docker zsh-syntax-highlighting kubectl)
