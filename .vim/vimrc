@@ -20,12 +20,18 @@ Plug 'dockyard/vim-easydir'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb' " fugitive plugin for GitHub
+Plug 'shumphrey/fugitive-gitlab.vim' " fugitive plugin for GitLab
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rails'
 Plug 'marcweber/vim-addon-mw-utils' " for vim-snipmate
 Plug 'tomtom/tlib_vim' " for vim-snipmate
+
+
+
+
 Plug 'garbas/vim-snipmate'
 Plug 'vim-ruby/vim-ruby'
 Plug 'noprompt/vim-yardoc'
@@ -66,7 +72,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set foldenable
-set foldmethod=syntax
+set foldmethod=indent
 set foldlevelstart=99
 set showcmd
 set wildmenu
@@ -101,6 +107,9 @@ autocmd FileType * setlocal
 
 " Plugins config {{{
 
+let g:airline_section_b = '%-0.20{getcwd()}'
+let g:airline_section_c = '%t'
+
 let g:buffergator_sort_regime = 'mru'
 let g:buffergator_show_full_directory_path = 0
 let g:buffergator_autoexpand_on_split = 0
@@ -124,6 +133,15 @@ let g:maximizer_restore_on_winleave = 1
 let g:javascript_plugin_jsdoc = 1
 
 let g:snipMate = { 'snippet_version' : 1 }
+
+let g:fugitive_gitlab_domains = ['https://gitlab.sbmt.io/']
+
+let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
+let g:rustfmt_autosave = 1
+
+hi EasyMotionTarget guifg=Yellow
+hi EasyMotionTarget2First guifg=Yellow
+hi EasyMotionTarget2Second guifg=Yellow
 
 " }}}
 

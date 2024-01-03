@@ -53,3 +53,6 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # Go lang
 export PATH="$PATH:/usr/local/go/bin"
+export PATH="$HOME/.sbm-cli/usr/bin:$PATH"
+autoload -U compinit; compinit
+source /Users/907th/.sbm-cli/completion/zsh/sbm-cli
