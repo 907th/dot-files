@@ -10,7 +10,6 @@ List of additional software:
 - Docker / OrbStack
 - Google Drive
 - Monosnap
-- The Unarchiver
 - Telegram
 - Zoom
 - VLC
