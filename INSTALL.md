@@ -1,22 +1,23 @@
 # Installation
 
 List of additional software:
+- Google Chrome
 - iTerm2
 - MacVim
-- Karabiner-Elements
 - Acrobat Reader
 - Coconut Battery
 - Menu Meters
-- Docker
-- Java
-- Google Chrome
+- Docker / OrbStack
 - Google Drive
 - Monosnap
-- Unarchiver
+- The Unarchiver
 - Telegram
 - Zoom
 - VLC
+
+Optional software:
+- Java
+- eqMac
 - Recordbox 5
 - MP3 Gain Express
 - MP3 Spek
-- eqMac
