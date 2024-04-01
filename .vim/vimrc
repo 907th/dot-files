@@ -28,10 +28,6 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rails'
 Plug 'marcweber/vim-addon-mw-utils' " for vim-snipmate
 Plug 'tomtom/tlib_vim' " for vim-snipmate
-
-
-
-
 Plug 'garbas/vim-snipmate'
 Plug 'vim-ruby/vim-ruby'
 Plug 'noprompt/vim-yardoc'
@@ -171,21 +167,24 @@ nmap <silent> <M-D-Left> <C-w>h
 nmap <silent> <M-D-Right> <C-w>l
 nmap <silent> <M-D-Up> <C-w>k
 nmap <silent> <M-D-Down> <C-w>j
+nmap <silent> <D-w> :bd<CR>
 nmap <silent> <D-d> <C-w>v
 nmap <silent> <D-D> <C-w>s
 nmap <silent> <S-D-CR> :MaximizerToggle!<CR>
 
-nmap <Leader>1 :BuffergatorToggle<CR>
-nmap <Leader>2 :TagbarToggle<CR>
-nmap <Leader>5 :checktime<CR>
-nmap <Leader>9 :Reset<CR>
-nmap <Leader>f :FZF<CR>
-nmap <Leader>] :FixWhitespace<CR>
-nmap <Leader>/ :let @/ = ''<CR>
-nmap <Leader>ew :%s/<C-R><C-W>/
+nmap <silent> <D-1> :BuffergatorToggle<CR>
+nmap <silent> <D-2> :TagbarToggle<CR>
+nmap <silent> <D-5> :checktime<CR>
+nmap <silent> <D-9> :Reset<CR>
+nmap <silent> <D-\> :FZF<CR>
+nmap <silent> <D-]> :FixWhitespace<CR>
+nmap <silent> <D-/> :let @/ = ''<CR>
+nmap <silent> <D-'> <Plug>(easymotion-prefix)
 
-nmap <silent> <Leader>yy :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
-nmap <silent> <Leader>yl :let @+ = fnamemodify(expand("%"), ":~:.") . ":" . line(".")<CR>
+" <M-y> plus y\l\r
+nmap <silent> <D-y>y :let @+ = fnamemodify(expand("%"), ":~:.")<CR>
+nmap <silent> <D-y>l :let @+ = fnamemodify(expand("%"), ":~:.") . ":" . line(".")<CR>
+nmap <silent> <D-y>r :let @+ = "rspec " . fnamemodify(expand("%"), ":~:.") . ":" . line(".")<CR>
 
 command Reset tabnew | tabonly | BufOnly
 

@@ -1,18 +1,11 @@
 [core]
 	autocrlf = input
 	ignorecase = false
-	excludesfile = /Users/907th/.gitignore_global
-	hookspath = /Users/907th/.git_settings/hooks
+	excludesfile = ~/.gitignore_global
+	hookspath = ~/.git_settings/hooks
 [init]
 	defaultBranch = master
 [push]
 	default = simple
 [pull]
 	rebase = false
-[user]
-	email = aychernenkov@gmail.com
-	name = Aleksei Chernenkov
-[url "git@git.sbermarket.tech:"]
-	insteadOf = https://gitlab.sbermarket.tech
-[url "git@gitlab.sbmt.io:"]
-	insteadof = https://gitlab.sbmt.io

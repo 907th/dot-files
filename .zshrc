@@ -48,11 +48,8 @@ source-script "$NVM_DIR/nvm.sh"
 # RVM
 source-script "$HOME/.rvm/scripts/rvm"
 
-# Rust
-export PATH="$PATH:$HOME/.cargo/bin"
+# Golang
+export PATH="/usr/local/go/bin:$PATH"
 
-# Go lang
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$HOME/.sbm-cli/usr/bin:$PATH"
-autoload -U compinit; compinit
-source /Users/907th/.sbm-cli/completion/zsh/sbm-cli
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
