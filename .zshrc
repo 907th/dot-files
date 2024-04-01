@@ -45,11 +45,11 @@ source-script "$HOME/.fzf.zsh"
 # NVM
 source-script "$NVM_DIR/nvm.sh"
 
-# RVM
-source-script "$HOME/.rvm/scripts/rvm"
-
 # Golang
 export PATH="/usr/local/go/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# RVM
+source-script "$HOME/.rvm/scripts/rvm"
