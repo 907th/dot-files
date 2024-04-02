@@ -30,15 +30,6 @@ export ZSH_THEME=""
 alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed
 alias v='mvim --remote'
 
-# Oh My Zsh
-plugins=(zsh-z git rvm rails bundler docker zsh-syntax-highlighting kubectl)
-source-script "$ZSH/oh-my-zsh.sh"
-
-# Pure prompt
-fpath+=($HOME/.zsh-pure)
-autoload -U promptinit; promptinit
-prompt pure
-
 # FZF
 source-script "$HOME/.fzf.zsh"
 
@@ -53,3 +44,12 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # RVM
 source-script "$HOME/.rvm/scripts/rvm"
+
+# Pure prompt
+fpath+=($HOME/.zsh-pure)
+autoload -U promptinit; promptinit
+prompt pure
+
+# Oh My Zsh
+plugins=(zsh-z git rvm rails bundler docker zsh-syntax-highlighting kubectl rust)
+source-script "$ZSH/oh-my-zsh.sh"
