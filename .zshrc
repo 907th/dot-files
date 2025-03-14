@@ -28,7 +28,6 @@ export ZSH_THEME=""
 
 # Aliases
 alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed
-alias v='mvim --remote'
 
 # FZF
 source-script "$HOME/.fzf.zsh"
@@ -51,5 +50,8 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # Oh My Zsh
-plugins=(zsh-z git rvm rails bundler docker zsh-syntax-highlighting kubectl rust)
+plugins=(zsh-syntax-highlighting zsh-z git docker kubectl rust golang rvm rails bundler)
 source-script "$ZSH/oh-my-zsh.sh"
+
+# ~/.zshrc.local
+source-script "$HOME/.zshrc.local"

@@ -1,5 +1,9 @@
 set nocompatible
 
+if !has("gui_macvim")
+  finish
+endif
+
 " vim-plug {{{
 
 call plug#begin('~/.vim/plugged')
@@ -93,7 +97,7 @@ set guicursor=a:blinkon0
 set clipboard=unnamed
 set cpoptions+=I " Do not delete autoindentation after cursor movement
 
-" Set the following format options despite of what ftplugin wants to set (https://vi.stackexchange.com/a/9367)
+" Set the following format options despite of what ftplugin wants to set (https://vi.stackexchange.com/a/1985)
 autocmd FileType * setlocal
 \ formatoptions-=c
 \ formatoptions-=r
@@ -104,7 +108,7 @@ autocmd FileType * setlocal
 " Plugins config {{{
 
 let g:airline_section_b = '%-0.20{getcwd()}'
-let g:airline_section_c = '%t'
+let g:airline_section_c = '%f'
 
 let g:buffergator_sort_regime = 'mru'
 let g:buffergator_show_full_directory_path = 0
@@ -142,7 +146,6 @@ hi EasyMotionTarget2Second guifg=Yellow
 " }}}
 
 " Key mappings {{{
-" Hint: Use `sed -n l` to debug which sequence terminal sends on key press
 
 nmap <Down> gj
 nmap <Up> gk
