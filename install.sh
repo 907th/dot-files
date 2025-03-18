@@ -28,17 +28,11 @@ zsh -i -c 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $Z
 echo "Downloading Pure prompt"
 git clone https://github.com/sindresorhus/pure.git $HOME/.zsh-pure
 
-echo "Installing Vim"
-brew install vim
-
 echo "Installing RVM"
 curl -sSL https://get.rvm.io | bash -s stable --autolibs=read-fail
 
 echo "Installing NVM"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-
-echo "Creating MacVim link"
-sudo ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/mvim
 
 echo "Downloading Dracula theme for Midnight Commander"
 MC_THEMES_DIR=$HOME/.local/share/mc/skins
@@ -46,6 +40,17 @@ MC_DRACULA_THEME_URL=https://raw.githubusercontent.com/dracula/midnight-commande
 mkdir -p $MC_THEMES_DIR
 curl -s $MC_DRACULA_THEME_URL/dracula.ini -o $MC_THEMES_DIR/dracula.ini
 curl -s $MC_DRACULA_THEME_URL/dracula256.ini -o $MC_THEMES_DIR/dracula256.ini
+
+echo "Installing Nerd Font"
+brew install --cask font-code-new-roman-nerd-font
+
+echo "Installing NeoVim + LazyVim"
+brew install neovim
+git clone https://github.com/LazyVim/starter $HOME/.config/nvim
+rm -rf $HOME/.config/nvim/.git
+
+echo "Installing other usefull packages"
+brew install jesseduffield/lazygit/lazygit ripgrep fd htop
 
 echo "Linking another dot-files"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
