@@ -53,7 +53,7 @@ prompt pure
 # Oh My Zsh
 # NOTE: zsh-syntax-highlighting must be the last included plugin!
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(zsh-z git docker kubectl rust golang rvm rails bundler zsh-syntax-highlighting)
+plugins=(zsh-z git docker docker-compose kubectl rust golang rvm rails bundler zsh-syntax-highlighting)
 source-script "$ZSH/oh-my-zsh.sh"
 
 # ~/.zshrc.local
