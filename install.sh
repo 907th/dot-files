@@ -62,8 +62,6 @@ create-link() {
   ln -s "$source" "$target"
 }
 create-link .vim
-create-link .bash_profile
-create-link .bashrc
 create-link .gemrc
 create-link .gitconfig
 create-link .gitignore_global
