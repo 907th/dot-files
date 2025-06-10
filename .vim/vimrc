@@ -38,6 +38,7 @@ Plug 'noprompt/vim-yardoc'
 Plug 'honza/dockerfile.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'aklt/plantuml-syntax'
 Plug 'fatih/vim-go', { 'do': ':goupdatebinaries' }
 Plug 'rust-lang/rust.vim'
 

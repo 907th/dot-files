@@ -39,7 +39,7 @@ export NVM_DIR="$HOME/.nvm"
 source-script "$HOME/.rvm/scripts/rvm"
 
 # Golang
-export PATH="/usr/local/go/bin:$PATH"
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
