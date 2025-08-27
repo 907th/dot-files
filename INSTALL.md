@@ -3,7 +3,6 @@
 List of additional software:
 - Google Chrome
 - iTerm2
-- MacVim
 - Acrobat Reader
 - Coconut Battery
 - Menu Meters
