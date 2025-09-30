@@ -28,12 +28,6 @@ zsh -i -c 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $Z
 echo "Downloading Pure prompt"
 git clone https://github.com/sindresorhus/pure.git $HOME/.zsh-pure
 
-echo "Installing RVM"
-curl -sSL https://get.rvm.io | bash -s stable --autolibs=read-fail
-
-echo "Installing NVM"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-
 echo "Downloading Dracula theme for Midnight Commander"
 MC_THEMES_DIR=$HOME/.local/share/mc/skins
 MC_DRACULA_THEME_URL=https://raw.githubusercontent.com/dracula/midnight-commander/master/skins
@@ -53,7 +47,7 @@ echo "Installing other usefull packages"
 brew install jesseduffield/lazygit/lazygit ripgrep fd htop
 
 echo "Linking another dot-files"
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 create-link() {
   local source="$SCRIPT_DIR/$1"
   local target="$HOME/$1"

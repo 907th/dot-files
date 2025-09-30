@@ -2,6 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AIFeatureFunctionCalling</key>
+	<true/>
+	<key>AIFeatureHostedCodeInterpeter</key>
+	<true/>
+	<key>AIFeatureHostedFileSearch</key>
+	<true/>
+	<key>AIFeatureHostedWebSearch</key>
+	<true/>
+	<key>AIFeatureStreamingResponses</key>
+	<true/>
+	<key>AITermAPI</key>
+	<integer>2</integer>
+	<key>AIVectorStore</key>
+	<integer>1</integer>
+	<key>AiMaxTokens</key>
+	<integer>1000000</integer>
+	<key>AiModel</key>
+	<string>gpt-4.1</string>
+	<key>AiResponseMaxTokens</key>
+	<integer>32768</integer>
+	<key>AitermURL</key>
+	<string>https://api.openai.com/v1/responses</string>
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>AlternateMouseScroll</key>
@@ -238,7 +260,34 @@
 	<key>EnableDivisionView</key>
 	<false/>
 	<key>GlobalKeyMap</key>
-	<dict/>
+	<dict>
+		<key>0xf702-0x300000-0x7b</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string>0x01</string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
+		<key>0xf703-0x300000-0x7c</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string>0x05</string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HideActivityIndicator</key>
@@ -263,6 +312,10 @@
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
+			<true/>
+			<key>Allow Change Cursor Blink</key>
+			<true/>
+			<key>Allow Title Reporting</key>
 			<true/>
 			<key>Allow Title Setting</key>
 			<false/>
@@ -501,7 +554,7 @@
 			<key>Description</key>
 			<string>Default</string>
 			<key>Disable Window Resizing</key>
-			<true/>
+			<false/>
 			<key>Flashing Bell</key>
 			<false/>
 			<key>Foreground Color</key>
@@ -546,6 +599,8 @@
 				<real>0.0</real>
 			</dict>
 			<key>Mouse Reporting</key>
+			<true/>
+			<key>Movement Keys Scroll Outside Interactive Apps</key>
 			<true/>
 			<key>Name</key>
 			<string>Default</string>
