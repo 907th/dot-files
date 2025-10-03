@@ -34,16 +34,6 @@ source-script "$HOME/.fzf.zsh"
 export FZF_DEFAULT_COMMAND="fd --type file"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-source-script "$NVM_DIR/nvm.sh"
-
-# Golang
-export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
-
-# Rust
-source "$HOME/.cargo/env"
-
 # Pure prompt
 export ZSH_THEME=""
 fpath+=($HOME/.zsh-pure)
@@ -53,7 +43,7 @@ prompt pure
 # Oh My Zsh
 # NOTE: zsh-syntax-highlighting must be the last included plugin!
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(zsh-z git docker docker-compose kubectl rust golang rbenv rails bundler zsh-syntax-highlighting)
+plugins=(zsh-z git docker docker-compose kubectl rust golang nvm rbenv rails bundler zsh-syntax-highlighting)
 source-script "$ZSH/oh-my-zsh.sh"
 
 # ~/.zshrc.local
