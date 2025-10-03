@@ -45,7 +45,7 @@ git clone https://github.com/LazyVim/starter $HOME/.config/nvim
 rm -rf $HOME/.config/nvim/.git
 
 echo "Installing other usefull packages"
-$brew install jesseduffield/lazygit/lazygit ripgrep fd htop
+$brew install jesseduffield/lazygit/lazygit ripgrep fd htop mc
 
 echo "Linking another dot-files"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
