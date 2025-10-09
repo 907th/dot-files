@@ -21,6 +21,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export EDITOR="vim"
 export PAGER="less"
+export LESS="-S -R" # -S chops long lines instead of wrapping them, -R enables color codes
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Aliases

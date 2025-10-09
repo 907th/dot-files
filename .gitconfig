@@ -13,3 +13,4 @@
 	path = ~/.gitconfig.local
 [pager]
 	branch = false
+	stash = false
