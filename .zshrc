@@ -30,11 +30,6 @@ alias mc='mc -u' # -u disables subshell support and dramatically increases UI sp
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# FZF
-source-script "$HOME/.fzf.zsh"
-export FZF_DEFAULT_COMMAND="fd --type file"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 # Pure prompt
 export ZSH_THEME=""
 fpath+=($HOME/.zsh-pure)
@@ -44,7 +39,7 @@ prompt pure
 # Oh My Zsh
 # NOTE: zsh-syntax-highlighting must be the last included plugin!
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(zsh-z git docker docker-compose kubectl rust golang nvm rbenv rails bundler zsh-syntax-highlighting)
+plugins=(zsh-z fzf git docker docker-compose kubectl rust golang nvm rbenv rails bundler zsh-syntax-highlighting)
 source-script "$ZSH/oh-my-zsh.sh"
 
 # ~/.zshrc.local
