@@ -3,6 +3,10 @@ echo "Initialising ZSH"
 # Increase max open files limit (default is 256)
 ulimit -S -n 2048
 
+# Use <Home> and <End> keys for jumps
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+
 # A command for sourcing other scripts
 source-script() {
   if [[ -f "$1" ]]; then
