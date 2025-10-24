@@ -3,9 +3,13 @@ echo "Initialising ZSH"
 # Increase max open files limit (default is 256)
 ulimit -S -n 2048
 
-# Use <Home> and <End> keys for jumps
-bindkey '^[[H' beginning-of-line
+# Use <Home> and <End> keys for jumps to beginning/end of line
+bindkey '^[OH' beginning-of-line
 bindkey '^[[F' end-of-line
+
+# Use <Alt-Left> and <Alt-Right> keys for jumps to next/previous word
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word
 
 # A command for sourcing other scripts
 source-script() {
@@ -25,11 +29,11 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export EDITOR="vim"
 export PAGER="less"
-export LESS="-S -R" # -S chops long lines instead of wrapping them, -R enables color codes
+export LESS="-S -R" # -S chops long lines instead of wrapping them, -R enables color codes.
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Aliases
-alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed
+alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed.
 
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"

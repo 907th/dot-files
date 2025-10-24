@@ -4,8 +4,8 @@
 
 local map = vim.keymap.set
 
-map("n", "<M-b>", "<C-w>h", { desc = "Go to Left Window" })
-map("n", "<M-f>", "<C-w>l", { desc = "Go to Right Window" })
+map("n", "<M-Left>", "<C-w>h", { desc = "Go to Left Window" })
+map("n", "<M-Right>", "<C-w>l", { desc = "Go to Right Window" })
 map("n", "<M-Up>", "<C-w>k", { desc = "Go to Upper Window" })
 map("n", "<M-Down>", "<C-w>j", { desc = "Go to Lower Window" })
 
