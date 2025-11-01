@@ -4,6 +4,9 @@
 
 local map = vim.keymap.set
 
+map("n", "<S-Right>", ":BufferLineCycleNext<CR>", { desc = "Open next buffer", silent = true })
+map("n", "<S-Left>", ":BufferLineCyclePrev<CR>", { desc = "Open previous buffer", silent = true })
+
 map("n", "<M-Left>", "<C-w>h", { desc = "Go to Left Window" })
 map("n", "<M-Right>", "<C-w>l", { desc = "Go to Right Window" })
 map("n", "<M-Up>", "<C-w>k", { desc = "Go to Upper Window" })
@@ -13,20 +16,8 @@ map({ "n" }, "<Home>", function()
   return (vim.fn.col(".") == vim.fn.match(vim.fn.getline("."), "\\S") + 1) and "0" or "^"
 end, { expr = true, desc = "Jump to either start or first character of the current line" })
 
-map("n", "<CR>", "o<Esc>", { desc = "Insert empty line after current one" })
-map("n", "<BS>", "O<Esc>", { desc = "Insert empty line before current one" })
+map("n", "<S-Up>", "O<Esc>", { desc = "Insert one empty line before" })
+map("n", "<S-Down>", "o<Esc>", { desc = "Insert one empty line below" })
 
-map("n", "<S-Right>", ":BufferLineCycleNext<CR>", { desc = "Open next buffer", silent = true })
-map("n", "<S-Left>", ":BufferLineCyclePrev<CR>", { desc = "Open previous buffer", silent = true })
-
--- map("n", "<Leader>e", function()
---   local explorerWin = Snacks.picker.get({ source = "explorer" })[1]
---   if explorerWin == nil then
---     Snacks.picker.explorer()
---   elseif explorerWin:is_focused() then
---     Snacks.picker.explorer()
---   else
---     Snacks.picker.explorer()
---     Snacks.picker.explorer()
---   end
--- end, { desc = "Open/close/jump to file explorer" })
+map("n", "<Del>", "i<Space><Esc>", { desc = "Insert one space in current cursor position" })
+map("n", "<S-Del>", "a<Space><Esc>", { desc = "Insert one space after current cursor position" })

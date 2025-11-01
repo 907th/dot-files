@@ -3,13 +3,12 @@ echo "Initialising ZSH"
 # Increase max open files limit (default is 256)
 ulimit -S -n 2048
 
-# Use <Home> and <End> keys for jumps to beginning/end of line
-bindkey '^[OH' beginning-of-line
-bindkey '^[[F' end-of-line
-
-# Use <Alt-Left> and <Alt-Right> keys for jumps to next/previous word
-bindkey '^[[1;3C' forward-word
-bindkey '^[[1;3D' backward-word
+# Configure shortcuts
+bindkey '^[OH' beginning-of-line # <Home> jumps to beginning of line.
+bindkey '^[[F' end-of-line # <End> jumps to end of line.
+bindkey '^[[1;3C' forward-word   # <Alt-Right> jumps to prev word.
+bindkey '^[[1;3D' backward-word  # <Alt-Left> jumps to next word.
+bindkey '^U' backward-kill-line  # <C-u> deletes text before cursor (like in Bash).
 
 # A command for sourcing other scripts
 source-script() {
