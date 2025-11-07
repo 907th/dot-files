@@ -7,6 +7,9 @@ local map = vim.keymap.set
 map("n", "<S-Right>", ":BufferLineCycleNext<CR>", { desc = "Open next buffer", silent = true })
 map("n", "<S-Left>", ":BufferLineCyclePrev<CR>", { desc = "Open previous buffer", silent = true })
 
+map("n", "<M-S-Right>", ":tabnext<CR>", { desc = "Open next tab", silent = true })
+map("n", "<M-S-Left>", ":tabprevious<CR>", { desc = "Open previous tab", silent = true })
+
 map("n", "<M-Left>", "<C-w>h", { desc = "Go to Left Window" })
 map("n", "<M-Right>", "<C-w>l", { desc = "Go to Right Window" })
 map("n", "<M-Up>", "<C-w>k", { desc = "Go to Upper Window" })
