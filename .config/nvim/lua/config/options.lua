@@ -3,4 +3,3 @@
 -- Add any additional options here
 
 vim.opt.spelllang = "en,ru" -- Configure spell checking languages.
-vim.g.copilot_proxy = "http://eu-proxy.2gis.one:3128" -- Proxy for GitHub Copilot.

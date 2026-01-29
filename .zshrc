@@ -33,6 +33,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Aliases
 alias mc='mc -u' # -u disables subshell support and dramatically increases UI speed.
+alias n='nvim'
 
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -11,6 +11,9 @@ return {
       colors = {
         comment = "lightgray", -- Use lighter color for comments for better readability.
       },
+      overrides = {
+        WinSeparator = { fg = "lightgray" }, -- Use lighter color for windows separator for better visibility.
+      },
     },
   },
   {
@@ -22,5 +25,26 @@ return {
   {
     "nvim-mini/mini.pairs",
     enabled = false, -- Do not autocomplete brackets, etc.
+  },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        sources = {
+          explorer = {
+            jump = { close = true },
+            matcher = { fuzzy = true },
+          },
+        },
+      },
+    },
+  },
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        sort_by = "id", -- Sort by buffer number, which roughly corresponds to open sequence.
+      },
+    },
   },
 }
