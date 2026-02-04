@@ -47,4 +47,12 @@ return {
       },
     },
   },
+  {
+    "folke/trouble.nvim",
+    opts = {
+      win = {
+        size = 50, -- Use 50 for fixed width, or 0.3 for 30%.
+      },
+    },
+  },
 }
