@@ -55,4 +55,24 @@ return {
       },
     },
   },
+  -- {
+  --   "leoluz/nvim-dap-go",
+  --   config = function()
+  --     require("dap-go").setup({
+  --       dap_configurations = {
+  --         {
+  --           type = "go",
+  --           name = "My Custom Test Debug",
+  --           request = "launch",
+  --           mode = "test",
+  --           program = "./app/fluidsearch/tests/api/",
+  --           env = {
+  --             TEST_DATABASE = "postgres://user:user@localhost:6432/fluidsearch?sslmode=disable",
+  --           },
+  --           args = { "-test.run", "UserDefined" },
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
 }
