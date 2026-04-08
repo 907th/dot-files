@@ -15,7 +15,7 @@ map("n", "<M-Right>", "<C-w>l", { desc = "Go to Right Window" })
 map("n", "<M-Up>", "<C-w>k", { desc = "Go to Upper Window" })
 map("n", "<M-Down>", "<C-w>j", { desc = "Go to Lower Window" })
 
-map({ "n" }, "<Home>", function()
+map("n", "<Home>", function()
   return (vim.fn.col(".") == vim.fn.match(vim.fn.getline("."), "\\S") + 1) and "0" or "^"
 end, { expr = true, desc = "Jump to either start or first character of the current line" })
 
@@ -24,3 +24,9 @@ map("n", "<S-Down>", "o<Esc>", { desc = "Insert one empty line below" })
 
 map("n", "<Del>", "i<Space><Esc>", { desc = "Insert one space in current cursor position" })
 map("n", "<S-Del>", "a<Space><Esc>", { desc = "Insert one space after current cursor position" })
+
+map("n", "<leader>fyr", function()
+  local path = vim.fn.expand("%:~:.") -- Relative to current working directory
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end, { desc = "Copy file relative path" })
