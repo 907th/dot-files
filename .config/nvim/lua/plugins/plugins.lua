@@ -17,37 +17,6 @@ return {
     },
   },
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      inlay_hints = { enabled = false }, -- Do not show code hints (e.g. func argument names in Go lang).
-    },
-  },
-  {
-    "nvim-mini/mini.pairs",
-    enabled = false, -- Do not autocomplete brackets, etc.
-  },
-  {
-    "folke/snacks.nvim",
-    opts = {
-      picker = {
-        sources = {
-          explorer = {
-            jump = { close = true },
-            matcher = { fuzzy = true },
-          },
-        },
-      },
-    },
-  },
-  {
-    "akinsho/bufferline.nvim",
-    opts = {
-      options = {
-        sort_by = "id", -- Sort by buffer number, which roughly corresponds to open sequence.
-      },
-    },
-  },
-  {
     "folke/trouble.nvim",
     opts = {
       win = {
@@ -55,24 +24,30 @@ return {
       },
     },
   },
-  -- {
-  --   "leoluz/nvim-dap-go",
-  --   config = function()
-  --     require("dap-go").setup({
-  --       dap_configurations = {
-  --         {
-  --           type = "go",
-  --           name = "My Custom Test Debug",
-  --           request = "launch",
-  --           mode = "test",
-  --           program = "./app/fluidsearch/tests/api/",
-  --           env = {
-  --             TEST_DATABASE = "postgres://user:user@localhost:6432/fluidsearch?sslmode=disable",
-  --           },
-  --           args = { "-test.run", "UserDefined" },
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "zbirenbaum/copilot.lua",
+    dependencies = {
+      "copilotlsp-nvim/copilot-lsp", -- For NES functionality.
+    },
+    opts = {
+      nes = {
+        enabled = true,
+        keymap = {
+          accept_and_goto = "<S-CR>",
+          accept = false,
+          dismiss = "<Esc>",
+        },
+      },
+    },
+  },
+  {
+    "nvim-neotest/neotest",
+    opts = {
+      adapters = {
+        ["neotest-golang"] = {
+          warn_test_name_dupes = false,
+        },
+      },
+    },
+  },
 }

@@ -3,6 +3,7 @@
 	ignorecase = false
 	excludesfile = ~/.gitignore_global
 	hookspath = ~/.git_settings/hooks
+  pager = delta
 [init]
 	defaultBranch = master
 [push]
@@ -14,3 +15,8 @@
 [pager]
 	branch = false
 	stash = false
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+[delta]
+  navigate = true  # Use n and N to move between diff sections.
+  light = false    # Set to true if you're using a light terminal theme.

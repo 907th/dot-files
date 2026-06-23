@@ -22,11 +22,38 @@ end, { expr = true, desc = "Jump to either start or first character of the curre
 map("n", "<S-Up>", "O<Esc>", { desc = "Insert one empty line before" })
 map("n", "<S-Down>", "o<Esc>", { desc = "Insert one empty line below" })
 
-map("n", "<Del>", "i<Space><Esc>", { desc = "Insert one space in current cursor position" })
-map("n", "<S-Del>", "a<Space><Esc>", { desc = "Insert one space after current cursor position" })
-
 map("n", "<leader>fyr", function()
-  local path = vim.fn.expand("%:~:.") -- Relative to current working directory
+  local path = vim.fn.expand("%:~:.")
   vim.fn.setreg("+", path)
   vim.notify("Copied: " .. path)
 end, { desc = "Copy file relative path" })
+
+map("n", "<leader>fyl", function()
+  local path = vim.fn.expand("%:~:.")
+  local line = vim.fn.line(".")
+  local result = path .. ":" .. line
+  vim.fn.setreg("+", result)
+  vim.notify("Copied: " .. result)
+end, { desc = "Copy file path with line number" })
+
+map("v", "<leader>fyl", function()
+  local path = vim.fn.expand("%:~:.")
+  local start_line = vim.fn.line("'<")
+  local end_line = vim.fn.line("'>")
+  local result = path .. ":" .. start_line .. "-" .. end_line
+  vim.fn.setreg("+", result)
+  vim.notify("Copied: " .. result)
+end, { desc = "Copy file path with line range" })
+
+map("n", "<leader>fyt", function()
+  local path = vim.fn.expand("%:~:.")
+  local dir = vim.fn.fnamemodify(path, ":h")
+  if dir == "" or dir == "." then
+    dir = "."
+  else
+    dir = "./" .. dir
+  end
+  local result = "go test " .. dir
+  vim.fn.setreg("+", result)
+  vim.notify("Copied: " .. result)
+end, { desc = "Copy go test command for current directory" })
