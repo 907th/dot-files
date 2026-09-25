@@ -57,6 +57,11 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = { enabled = false },
+      servers = {
+        clangd = {
+          cmd = { "/opt/homebrew/opt/llvm/bin/clangd" },
+        },
+      },
     },
   },
   {
@@ -79,6 +84,16 @@ return {
     opts = {
       presets = {
         lsp_doc_border = true, -- Add a border around LSP popup.
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters = {
+        golangcilint = {
+          cmd = os.getenv("CUSTOM_GOLANGCI_PATH") or "golangci-lint",
+        },
       },
     },
   },
